@@ -1,102 +1,126 @@
 #include "cmyengine.h"
- 
+
 void CMyEngine::AdditionalInit()
 {
-        // Load up additional data
+    // Load up additional data
+    cm = new CSurfaceManager();
+
+    cm->addImage(new CSurface( (char *) "teatteri_nologo.jpg"));
 }
- 
-void CMyEngine::Think( const int& iElapsedTime )
+
+void CMyEngine::Think( const int& elapsedTime )
 {
-        // Do time-based calculations
+    UNUSED(elapsedTime);
+    // Do time-based calculations
 }
- 
-void CMyEngine::Render( SDL_Surface* pDestSurface )
+
+void CMyEngine::Render( SDL_Surface* destSurface )
 {
-        // Display slick graphics on screen
-}
- 
-void CMyEngine::KeyDown(const int& iKeyEnum)
-{        
-    switch (iKeyEnum)
-    {
-    case SDLK_LEFT:
-      // Left arrow pressed
-      break;
-    case SDLK_RIGHT:
-      // Right arrow pressed
-      break;
-    case SDLK_UP:
-      // Up arrow pressed
-      break;
-    case SDLK_DOWN:
-      // Down arrow pressed
-      break;
+    UNUSED(destSurface);
+    // Display slick graphics on screen
+
+    CSurface *image = cm->getImage("teatteri_nologo.jpg");
+    if (image != 0) {
+        image->draw(destSurface,1,1);
     }
 }
- 
- 
-void CMyEngine::KeyUp(const int& iKeyEnum)
+
+void CMyEngine::KeyDown(const int& keyEnum)
 {
-        switch (iKeyEnum)
-        {
-        case SDLK_LEFT:
-          // Left arrow released
-          break;
-        case SDLK_RIGHT:
-          // Right arrow released
-          break;
-        case SDLK_UP:
-          // Up arrow released
-          break;
-        case SDLK_DOWN:
-          // Down arrow released
-          break;
-        }
+    switch (keyEnum) {
+    case SDLK_LEFT:
+        // Left arrow pressed
+        break;
+    case SDLK_RIGHT:
+        // Right arrow pressed
+        break;
+    case SDLK_UP:
+        // Up arrow pressed
+        break;
+    case SDLK_DOWN:
+        // Down arrow pressed
+        break;
+    }
 }
- 
-void CMyEngine::MouseMoved(const int& iButton, 
-                           const int& iX, 
-                           const int& iY, 
-                           const int& iRelX, 
-                           const int& iRelY)
+
+
+void CMyEngine::KeyUp(const int& keyEnum)
 {
-        // Handle mouse movement
- 
-        // iX and iY are absolute screen positions
-        // iRelX and iRelY are screen position relative to last detected mouse movement
+    switch (keyEnum) {
+    case SDLK_LEFT:
+        // Left arrow released
+        break;
+    case SDLK_RIGHT:
+        // Right arrow released
+        break;
+    case SDLK_UP:
+        // Up arrow released
+        break;
+    case SDLK_DOWN:
+        // Down arrow released
+        break;
+    }
 }
- 
-void CMyEngine::MouseButtonUp(const int& iButton, 
-                              const int& iX, 
-                              const int& iY, 
-                              const int& iRelX, 
-                              const int& iRelY)
+
+void CMyEngine::MouseMoved(const int& button,
+                           const int& x,
+                           const int& y,
+                           const int& relX,
+                           const int& relY)
 {
-        // Handle mouse button released
+    // Handle mouse movement
+    UNUSED(button);
+    UNUSED(x);
+    UNUSED(y);
+    UNUSED(relX);
+    UNUSED(relY);
+    // x and y are absolute screen positions
+    // relX and relY are screen position relative to last detected mouse movement
 }
- 
-void CMyEngine::MouseButtonDown(const int& iButton, 
-                                const int& iX, 
-                                const int& iY, 
-                                const int& iRelX, 
-                                const int& iRelY)
+
+void CMyEngine::MouseButtonUp(const int& button,
+                              const int& x,
+                              const int& y,
+                              const int& relX,
+                              const int& relY)
 {
-        // Handle mouse button pressed
+    // Handle mouse button released
+    UNUSED(button);
+    UNUSED(x);
+    UNUSED(y);
+    UNUSED(relX);
+    UNUSED(relY);
+
 }
- 
+
+void CMyEngine::MouseButtonDown(const int& button,
+                                const int& x,
+                                const int& y,
+                                const int& relX,
+                                const int& relY)
+{
+    // Handle mouse button pressed
+    UNUSED(button);
+    UNUSED(x);
+    UNUSED(y);
+    UNUSED(relX);
+    UNUSED(relY);
+
+}
+
 void CMyEngine::WindowInactive()
 {
-        // Pause game
+    // Pause game
 }
- 
+
 void CMyEngine::WindowActive()
 {
-        // Un-pause game
+    // Un-pause game
 }
- 
- 
+
+
 void CMyEngine::End()
 {
-        // Clean up
+    // Clean up
 }
 
