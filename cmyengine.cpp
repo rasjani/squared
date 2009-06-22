@@ -1,10 +1,17 @@
 #include "cmyengine.h"
+#include <SDL/SDL_ttf.h>
+#include <sstream>
 
 void CMyEngine::AdditionalInit()
 {
     // Load up additional data
     cm = new CSurfaceManager();
-    cm->addImage(new CSurface( (char *) "teatteri_nologo.jpg"));
+    CSurface *foo = new CSurface("teatteri_nologo.jpg");
+    cm->addImage(foo);
+    if(TTF_Init()==-1) {
+        exit(2);
+    }
+    font = TTF_OpenFont("font.ttf",16);
 }
 
 void CMyEngine::Think( const int& elapsedTime )
@@ -21,6 +28,20 @@ void CMyEngine::Render( SDL_Surface* destSurface )
     CSurface *image = cm->getImage("teatteri_nologo.jpg");
     if (image != 0) {
         image->draw(destSurface,1,1);
+    }
+
+    if (font) {
+        SDL_Rect d;
+        d.x = 100;
+        d.y = 100;
+        SDL_Color fontcolor={250,250,250,0};
+        std::stringstream ss;
+        ss  << GetFPS();
+        std::string foo;
+        ss >> foo; 
+        SDL_Surface *temp =  TTF_RenderText_Solid(font,foo.c_str(),fontcolor);
+        SDL_BlitSurface(temp,NULL,destSurface,&d);
+        SDL_FreeSurface(temp);
     }
 }
 
@@ -125,5 +146,7 @@ void CMyEngine::End()
     delete cm;
     cm = 0;
   }
+  TTF_CloseFont(font);
+  TTF_Quit();        
 }
 

@@ -30,14 +30,16 @@
 
 
 CSurfaceManager::~CSurfaceManager() {
+    // TODO: We are propably leaking memory here ?  
     if (images != 0) {
         std::vector<CSurface *>::iterator it;
         while (!images->empty() ) {
-            it = images->end();
-            (*it)->getImage();
-
+            it = images->begin();
+            SDL_FreeSurface((*it)->getImage());
             images->erase(it);
         }
+        delete images;
+        images = 0;
     }
 }
 

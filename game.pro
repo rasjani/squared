@@ -2,7 +2,7 @@ OBJECTS_DIR = .obj
 CONFIG += link_pkgconfig \
     warn_on
 PKGCONFIG += sdl
-LIBS += -lSDL_image
+LIBS += -lSDL_image -lSDL_ttf
 TEMPLATE = app
 TARGET = test
 DEPENDPATH += .

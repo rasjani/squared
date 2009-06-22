@@ -5,6 +5,7 @@
 #include "csurfacemanager.h"
 #include "csurface.h"
 #include <stdlib.h>
+#include <SDL/SDL_ttf.h>
 
 class CMyEngine: public CEngine
 {
@@ -42,6 +43,8 @@ public:
         CSurfaceManager *cm;
 
 private:
+
+        TTF_Font *font;
 
 
 };

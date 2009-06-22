@@ -84,7 +84,7 @@ void CEngine::Start()
             // Render stuff
             DoRender();
         }
-        SDL_Delay(100);
+        SDL_Delay(25);
     }
 
     End();
