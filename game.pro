@@ -1,6 +1,7 @@
 OBJECTS_DIR = .obj
 CONFIG += link_pkgconfig \
     warn_on
+QT -= gui qt
 PKGCONFIG += sdl
 LIBS += -lSDL_image -lSDL_ttf
 TEMPLATE = app
