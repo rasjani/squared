@@ -14,6 +14,8 @@ class CSurface {
         bool draw(SDL_Surface *dest, int x, int y);
         bool draw(CSurface *dest, int x, int y);
 
+        bool drawPartial(SDL_Surface *dest, int x, int y, int destX, int destY, int w, int h);
+        bool drawPartial(CSurface *dest, int x, int y, int destX, int destY, int w, int h);
 
         SDL_Surface *getImage();
         std::string getName();
