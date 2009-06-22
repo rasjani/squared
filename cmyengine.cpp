@@ -4,7 +4,6 @@ void CMyEngine::AdditionalInit()
 {
     // Load up additional data
     cm = new CSurfaceManager();
-
     cm->addImage(new CSurface( (char *) "teatteri_nologo.jpg"));
 }
 
@@ -122,5 +121,9 @@ void CMyEngine::WindowActive()
 void CMyEngine::End()
 {
     // Clean up
+  if (cm != 0) {
+    delete cm;
+    cm = 0;
+  }
 }
 
