@@ -4,12 +4,10 @@
 #include <SDL/SDL_image.h>
 
 CSurface::CSurface() :
-        name(""),
         image(0) {
 }
 
-CSurface::CSurface(char *filename) :
-        name(""),
+CSurface::CSurface(std::string filename) :
         image(0)
 {
     load(filename);
@@ -30,14 +28,14 @@ std::string CSurface::getName() {
 }
 
 
-bool CSurface::load(char *filename) {
+bool CSurface::load(std::string filename) {
     SDL_Surface *tmp;
 
     if (image != 0) {
         return false;
     }
 
-    if((tmp = IMG_Load(filename)) == NULL) {
+    if((tmp = IMG_Load(filename.c_str())) == NULL) {
         return false;
     }
 

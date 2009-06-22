@@ -7,10 +7,10 @@
 class CSurface {
     public:
         CSurface();
-        CSurface (char *filename);
+        CSurface (std::string filename);
         ~CSurface();
 
-        bool load(char *filename);
+        bool load(std::string filename);
         bool draw(SDL_Surface *dest, int x, int y);
         bool draw(CSurface *dest, int x, int y);
 
