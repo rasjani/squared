@@ -3,6 +3,7 @@
 
 #include "cengine.h"
 #include "csurfacemanager.h"
+#include "cfontmanager.h"
 #include "csurface.h"
 #include <stdlib.h>
 #include <SDL/SDL_ttf.h>
@@ -41,10 +42,12 @@ public:
         void End();
 
         CSurfaceManager *cm;
+        CFontManager *fm;
 
 private:
 
-        TTF_Font *font;
+        int myFontId;
+        int myImageId;
 
 
 };

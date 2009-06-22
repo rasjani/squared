@@ -12,9 +12,11 @@ QMAKE_CXXFLAGS += -Werror
 HEADERS += cengine.h \
     cmyengine.h \
     csurface.h \
-    csurfacemanager.h
+    csurfacemanager.h \
+    cfontmanager.h
 SOURCES += cengine.cpp \
     cmyengine.cpp \
     main.cpp \
     cmysurface.cpp \
-    cmysurfacemanager.cpp
+    cmysurfacemanager.cpp\
+    cmyfontmanager.cpp

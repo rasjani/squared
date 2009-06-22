@@ -18,10 +18,8 @@ class CSurface {
         bool drawPartial(CSurface *dest, int x, int y, int destX, int destY, int w, int h);
 
         SDL_Surface *getImage();
-        std::string getName();
 
     private:
-        std::string  name;
         SDL_Surface *image;
 
 };

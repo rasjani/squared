@@ -23,11 +23,6 @@ SDL_Surface *CSurface::getImage() {
     return image;
 }
 
-std::string CSurface::getName() {
-    return name;
-}
-
-
 bool CSurface::load(std::string filename) {
     SDL_Surface *tmp;
 
@@ -39,10 +34,9 @@ bool CSurface::load(std::string filename) {
         return false;
     }
 
-
-    name = std::string(filename);
     image = SDL_DisplayFormat(tmp);
     SDL_FreeSurface(tmp);
+    tmp = 0;
     return true;
 }
 

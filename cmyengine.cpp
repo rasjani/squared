@@ -6,12 +6,9 @@ void CMyEngine::AdditionalInit()
 {
     // Load up additional data
     cm = new CSurfaceManager();
-    CSurface *foo = new CSurface("teatteri_nologo.jpg");
-    cm->addImage(foo);
-    if(TTF_Init()==-1) {
-        exit(2);
-    }
-    font = TTF_OpenFont("font.ttf",16);
+    fm = new CFontManager();
+    myImageId = cm->addImage(new CSurface("teatteri_nologo.jpg"));
+    myFontId = fm->addFont("font.ttf");
 }
 
 void CMyEngine::Think( const int& elapsedTime )
@@ -25,12 +22,12 @@ void CMyEngine::Render( SDL_Surface* destSurface )
     UNUSED(destSurface);
     // Display slick graphics on screen
 
-    CSurface *image = cm->getImage("teatteri_nologo.jpg");
+    CSurface *image = cm->getImage(myImageId);
     if (image != 0) {
         image->draw(destSurface,1,1);
     }
 
-    if (font) {
+    if (myFontId != -1) {
         SDL_Rect d;
         d.x = 100;
         d.y = 100;
@@ -39,7 +36,7 @@ void CMyEngine::Render( SDL_Surface* destSurface )
         ss  << GetFPS();
         std::string foo;
         ss >> foo; 
-        SDL_Surface *temp =  TTF_RenderText_Solid(font,foo.c_str(),fontcolor);
+        SDL_Surface *temp =  TTF_RenderText_Solid(fm->getFont(myFontId),foo.c_str(),fontcolor);
         SDL_BlitSurface(temp,NULL,destSurface,&d);
         SDL_FreeSurface(temp);
     }
@@ -141,12 +138,15 @@ void CMyEngine::WindowActive()
 
 void CMyEngine::End()
 {
-    // Clean up
+  // Clean up
   if (cm != 0) {
     delete cm;
     cm = 0;
   }
-  TTF_CloseFont(font);
-  TTF_Quit();        
+
+  if (fm != 0) {
+    delete fm;
+    fm = 0;
+  }
 }
 

@@ -10,8 +10,8 @@ class CSurfaceManager {
         CSurfaceManager();
         ~CSurfaceManager();
 
-        bool addImage(CSurface *image);
-        CSurface *getImage(std::string name);
+        int addImage(CSurface *image);
+        CSurface *getImage(int imageId);
 
     private:
         std::vector<CSurface *> *images;
