@@ -3,6 +3,18 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+
+
+bool CSurface::setTransparency(int r, int g, int b)
+{
+  if(image == NULL) {
+    return false;
+  }
+
+  SDL_SetColorKey(image , SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(image->format, r, g, b));
+  return true;
+}
+
 CSurface::CSurface() :
         image(0) {
 }

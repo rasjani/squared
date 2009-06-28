@@ -16,7 +16,7 @@ class CSurface {
 
         bool drawPartial(SDL_Surface *dest, int x, int y, int destX, int destY, int w, int h);
         bool drawPartial(CSurface *dest, int x, int y, int destX, int destY, int w, int h);
-
+        bool setTransparency(int r, int g, int b);
         SDL_Surface *getImage();
 
     private:
