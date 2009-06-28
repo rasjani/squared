@@ -3,3 +3,7 @@ Makefile*
 qtc-gdbmacros/
 test
 game.pro.user
+cscope.files
+cscope.out
+tags
+
