@@ -2,10 +2,20 @@
 #include <iostream>
 #include <stdexcept>
 
- CSurfaceManager::CSurfaceManager() :
-         images(0)
+
+CSurfaceManager *CSurfaceManager::manager = NULL;
+
+CSurfaceManager::CSurfaceManager() :
+    images(0)
 {
     images = new std::vector<CSurface *>();
+}
+
+CSurfaceManager *CSurfaceManager::getInstance() {
+    if (!CSurfaceManager::manager) {
+        CSurfaceManager::manager = new CSurfaceManager();
+    }
+    return CSurfaceManager::manager;
 }
 
 int CSurfaceManager::addImage(CSurface *image) {
