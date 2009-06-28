@@ -1,7 +1,10 @@
 OBJECTS_DIR = .obj
 CONFIG += link_pkgconfig \
     warn_on
-QT -= gui qt
+QT -= gui \
+    core
+
+
 PKGCONFIG += sdl
 LIBS += -lSDL_image -lSDL_ttf
 TEMPLATE = app
@@ -14,10 +17,13 @@ HEADERS += cengine.h \
     cmyengine.h \
     csurface.h \
     csurfacemanager.h \
-    cfontmanager.h
+    cfontmanager.h \
+    canimation.h \
+
 SOURCES += cengine.cpp \
     cmyengine.cpp \
     main.cpp \
     cmysurface.cpp \
     cmysurfacemanager.cpp\
+    cmyanimation.cpp \
     cmyfontmanager.cpp
