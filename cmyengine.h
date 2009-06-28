@@ -7,10 +7,13 @@
 #include "csurface.h"
 #include <stdlib.h>
 #include <SDL/SDL_ttf.h>
+#include "centitymanager.h"
 
 class CMyEngine: public CEngine
 {
 public:
+        CMyEngine(); 
+
         void AdditionalInit ();
         void Think          ( const int& elapsedTime );
         void Render         ( SDL_Surface* destSurface );
@@ -43,13 +46,12 @@ public:
 
         CSurfaceManager *cm;
         CFontManager *fm;
+        CEntityManager *cem;
 
 private:
 
         int myFontId;
         int myImageId;
-
-
 };
 
 #endif // CMYENGINE_H

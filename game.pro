@@ -13,17 +13,26 @@ DEPENDPATH += .
 INCLUDEPATH += .
 QMAKE_CXXFLAGS += -Wall
 QMAKE_CXXFLAGS += -Werror
-HEADERS += cengine.h \
+HEADERS += \
+    cengine.h \
     cmyengine.h \
     csurface.h \
     csurfacemanager.h \
     cfontmanager.h \
     canimation.h \
+    centitymanager.h \
+    centity.h \
+    yoshient.h \
 
-SOURCES += cengine.cpp \
+SOURCES += \
+    cengine.cpp \
     cmyengine.cpp \
     main.cpp \
     cmysurface.cpp \
     cmysurfacemanager.cpp\
     cmyanimation.cpp \
-    cmyfontmanager.cpp
+    cmyfontmanager.cpp \
+    cmyentitymanager.cpp \
+    centity.cpp \
+    yoshient.cpp \
+
