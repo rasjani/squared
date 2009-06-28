@@ -1,0 +1,6 @@
+#!/bin/bash 
+/usr/bin/ctags --exclude=moc_*.cpp --exclude=Makefile -R .
+/usr/bin/cscope -b -R 
+/usr/bin/find . -name "*.h" -print > cscope.files
+/usr/bin/find . -name "*.cpp" -print >> cscope.files
+/usr/bin/cscope -b 
