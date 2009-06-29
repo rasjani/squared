@@ -1,11 +1,11 @@
-#ifndef YOSHIENT_H
-#define YOSHIENT_H
+#ifndef YOSHIENT2_H
+#define YOSHIENT2_H
 #include "centity.h"
 
 
-class YoshiEnt : public CEntity {
+class YoshiEnt2 : public CEntity {
     public: 
-    YoshiEnt(std::string image, int frames);
+    YoshiEnt2(std::string image, int frames);
 
     virtual void think(const int& elapsedTime);                                                                                                                         
     virtual void render(SDL_Surface *destSurface);
@@ -16,8 +16,6 @@ class YoshiEnt : public CEntity {
         int startY;
         int endX;
         int endY;
-        int betweenX;
-        int betweenY;
 };
 
 #endif

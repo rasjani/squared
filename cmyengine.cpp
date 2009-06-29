@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "yoshient.h"
+#include "yoshient2.h"
 
 CMyEngine::CMyEngine() :
     cm(0),
@@ -21,6 +22,8 @@ void CMyEngine::AdditionalInit()
 
 
     cem->addEntity( new YoshiEnt("yoshi.bmp",8));
+    cem->addEntity( new YoshiEnt2("yoshi.bmp",8));
+
     myImageId = cm->addImage(new CSurface("teatteri_nologo.jpg"));
     myFontId = fm->addFont("font.ttf");
 

@@ -16,11 +16,9 @@ CEntity::CEntity(std::string image, int frames) :
     CSurfaceManager *cm = CSurfaceManager::getInstance();
     animControl = new CAnimation();
     animControl->setMaxFrames(frames);
-
+    animControl->setAnimStyle(CAnimation::AnimLoop);
     surfaceId = cm->addImage(new CSurface(image));
     surface = cm->getImage(surfaceId);
-
-
 }
 
 

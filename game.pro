@@ -6,7 +6,7 @@ QT -= gui \
 
 
 PKGCONFIG += sdl
-LIBS += -lSDL_image -lSDL_ttf
+LIBS += -lSDL_image -lSDL_ttf -lm
 TEMPLATE = app
 TARGET = test
 DEPENDPATH += .
@@ -23,6 +23,7 @@ HEADERS += \
     centitymanager.h \
     centity.h \
     yoshient.h \
+    yoshient2.h \
 
 SOURCES += \
     cengine.cpp \
@@ -35,4 +36,5 @@ SOURCES += \
     cmyentitymanager.cpp \
     centity.cpp \
     yoshient.cpp \
+    yoshient2.cpp \
 
