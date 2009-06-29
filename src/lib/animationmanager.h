@@ -1,8 +1,8 @@
-#ifndef CANIMATION_H
-#define CANIMATION_H
+#ifndef ANIMATIONMANAGER_H
+#define ANIMATIONMANAGER_H
 
 
-class CAnimation {
+class AnimationManager {
     public: 
         enum animStyle {
             AnimStill,
@@ -13,7 +13,7 @@ class CAnimation {
         }; 
     
     public:
-        CAnimation();
+        AnimationManager();
         void animate();
         void setFrameRate(int rate);
         void setCurrentFrame(int frame);

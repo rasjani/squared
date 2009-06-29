@@ -1,5 +1,5 @@
-#ifndef CENGINE_H
-#define CENGINE_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
 #include "SDL/SDL.h"
 
@@ -8,7 +8,7 @@
 
 
 /** The base engine class. **/
-class CEngine
+class Engine
 {
 private:
     /** Last iteration's tick value **/
@@ -50,8 +50,8 @@ protected:
     void HandleInput();
 
 public:
-    CEngine();
-    virtual ~CEngine();
+    Engine();
+    virtual ~Engine();
 
     void Init();
     void Start();

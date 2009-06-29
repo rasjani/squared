@@ -1,7 +1,7 @@
-#include "canimation.h"
+#include "animationmanager.h"
 #include <SDL/SDL.h>
 
-CAnimation::CAnimation() :
+AnimationManager::AnimationManager() :
     currFrame(0),
     frameInc(1),
     frameRate(100),
@@ -12,27 +12,27 @@ CAnimation::CAnimation() :
 { 
 }
 
-void  CAnimation::setAnimStyle(animStyle animationStyle) {
+void  AnimationManager::setAnimStyle(animStyle animationStyle) {
     aStyle = animationStyle;
 }
 
-void CAnimation::setMaxFrames(int noFrames) {
+void AnimationManager::setMaxFrames(int noFrames) {
   maxFrames = noFrames;
 }
 
-void CAnimation::setFrameRate(int rate) {
+void AnimationManager::setFrameRate(int rate) {
   frameRate = rate;
 }
 
-void CAnimation::setCurrentFrame(int frame) {
+void AnimationManager::setCurrentFrame(int frame) {
   currFrame = frame;
 }
 
-int CAnimation::getCurrentFrame() {
+int AnimationManager::getCurrentFrame() {
   return currFrame;
 }
 
-void CAnimation::animate() {
+void AnimationManager::animate() {
       if ((unsigned int) (oldTime + frameRate) > SDL_GetTicks()) {
         return;
     }

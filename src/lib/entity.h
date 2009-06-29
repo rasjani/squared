@@ -1,17 +1,17 @@
-#ifndef CENTITY_H
-#define CENTITY_H
+#ifndef ENTITY_H
+#define ENTITY_H
 #include <string>
 #include <SDL/SDL.h>
 
-#include "csurface.h"
-#include "canimation.h"
+#include "surface.h"
+#include "animationmanager.h"
 
-class CEntity
+class Entity
 {
   public:
-    CEntity(std::string image, int frames);
+    Entity(std::string image, int frames);
 
-    virtual ~CEntity();
+    virtual ~Entity();
 
 
     virtual void think(const int& elapsedTime);
@@ -25,9 +25,9 @@ class CEntity
     int _frame;
     int  surfaceId;
 
-    CAnimation *animControl;
-    CSurface *surface;
+    AnimationManager *animControl;
+    Surface *surface;
 
 };
 
-#endif /* #ifndef CENTITY_H */
+#endif /* #ifndef ENTITY_H */

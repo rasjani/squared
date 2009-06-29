@@ -1,18 +1,18 @@
-#ifndef CMYENGINE_H
-#define CMYENGINE_H
+#ifndef SQUAREDENGINE_H
+#define SQUAREDENGINE_H
 
-#include "cengine.h"
-#include "csurfacemanager.h"
-#include "cfontmanager.h"
-#include "csurface.h"
+#include "engine.h"
+#include "surfacemanager.h"
+#include "fontmanager.h"
+#include "surface.h"
 #include <stdlib.h>
 #include <SDL/SDL_ttf.h>
-#include "centitymanager.h"
+#include "entitymanager.h"
 
-class CMyEngine: public CEngine
+class SquaredEngine: public Engine
 {
 public:
-        CMyEngine(); 
+        SquaredEngine(); 
 
         void AdditionalInit ();
         void Think          ( const int& elapsedTime );
@@ -44,9 +44,9 @@ public:
 
         void End();
 
-        CSurfaceManager *cm;
-        CFontManager *fm;
-        CEntityManager *cem;
+        SurfaceManager *cm;
+        FontManager *fm;
+        EntityManager *cem;
 
 private:
 
@@ -54,5 +54,5 @@ private:
         int myImageId;
 };
 
-#endif // CMYENGINE_H
+#endif // SQUAREDENGINE_H
 

@@ -1,24 +1,24 @@
-#include "csurfacemanager.h"
+#include "surfacemanager.h"
 #include <iostream>
 #include <stdexcept>
 
 
-CSurfaceManager *CSurfaceManager::manager = NULL;
+SurfaceManager *SurfaceManager::manager = NULL;
 
-CSurfaceManager::CSurfaceManager() :
+SurfaceManager::SurfaceManager() :
     images(0)
 {
-    images = new std::vector<CSurface *>();
+    images = new std::vector<Surface *>();
 }
 
-CSurfaceManager *CSurfaceManager::getInstance() {
-    if (!CSurfaceManager::manager) {
-        CSurfaceManager::manager = new CSurfaceManager();
+SurfaceManager *SurfaceManager::getInstance() {
+    if (!SurfaceManager::manager) {
+        SurfaceManager::manager = new SurfaceManager();
     }
-    return CSurfaceManager::manager;
+    return SurfaceManager::manager;
 }
 
-int CSurfaceManager::addImage(CSurface *image) {
+int SurfaceManager::addImage(Surface *image) {
     if (image != 0 && images != 0) {
         images->push_back(image);
         return images->size()-1;
@@ -27,9 +27,9 @@ int CSurfaceManager::addImage(CSurface *image) {
  }
 
 
- CSurface *CSurfaceManager::getImage(int imageId) {
+Surface *SurfaceManager::getImage(int imageId) {
     if (images != 0) {
-      CSurface *s = 0;
+      Surface *s = 0;
       try  {
         s = images->at(imageId);
       } catch (std::out_of_range &e) {
@@ -41,12 +41,12 @@ int CSurfaceManager::addImage(CSurface *image) {
  }
 
 
-CSurfaceManager::~CSurfaceManager() {
+SurfaceManager::~SurfaceManager() {
     // TODO: We are propably leaking memory here ?  
     if (images != 0) {
-        std::vector<CSurface *>::iterator it;
+        std::vector<Surface *>::iterator it;
         while (!images->empty() ) {
-          CSurface *tmp  = 0;
+          Surface *tmp  = 0;
           it = images->begin();
           tmp = (*it);
           images->erase(it);

@@ -1,46 +1,46 @@
-#include "cmyengine.h"
-#include "csurface.h"
+#include "squaredengine.h"
+#include "surface.h"
 #include <SDL/SDL_ttf.h>
 #include <sstream>
 #include <iostream>
 #include "yoshient.h"
 #include "yoshient2.h"
 
-CMyEngine::CMyEngine() :
+SquaredEngine::SquaredEngine() :
     cm(0),
     fm(0),
     cem(0)
 {}
 
 int direction = 1;
-void CMyEngine::AdditionalInit()
+void SquaredEngine::AdditionalInit()
 {
     // Load up additional data
-    cm = CSurfaceManager::getInstance();
-    fm = new CFontManager();
-    cem = new CEntityManager();
+    cm = SurfaceManager::getInstance();
+    fm = new FontManager();
+    cem = new EntityManager();
 
 
     cem->addEntity( new YoshiEnt("yoshi.bmp",8));
     cem->addEntity( new YoshiEnt2("yoshi.bmp",8));
 
-    myImageId = cm->addImage(new CSurface("teatteri_nologo.jpg"));
+    myImageId = cm->addImage(new Surface("teatteri_nologo.jpg"));
     myFontId = fm->addFont("font.ttf");
 
 }
 
-void CMyEngine::Think( const int& elapsedTime )
+void SquaredEngine::Think( const int& elapsedTime )
 {
     cem->think(elapsedTime);
 
     // Do time-based calculations
 }
 
-void CMyEngine::Render( SDL_Surface* destSurface )
+void SquaredEngine::Render( SDL_Surface* destSurface )
 {
     // Display slick graphics on screen
 
-    CSurface *image = cm->getImage(myImageId);
+    Surface *image = cm->getImage(myImageId);
     if (image != 0) {
         image->draw(destSurface,10,10);
     }
@@ -63,7 +63,7 @@ void CMyEngine::Render( SDL_Surface* destSurface )
     }
 }
 
-void CMyEngine::KeyDown(const int& keyEnum)
+void SquaredEngine::KeyDown(const int& keyEnum)
 {
     switch (keyEnum) {
     case SDLK_LEFT:
@@ -82,7 +82,7 @@ void CMyEngine::KeyDown(const int& keyEnum)
 }
 
 
-void CMyEngine::KeyUp(const int& keyEnum)
+void SquaredEngine::KeyUp(const int& keyEnum)
 {
     switch (keyEnum) {
     case SDLK_LEFT:
@@ -100,7 +100,7 @@ void CMyEngine::KeyUp(const int& keyEnum)
     }
 }
 
-void CMyEngine::MouseMoved(const int& button,
+void SquaredEngine::MouseMoved(const int& button,
                            const int& x,
                            const int& y,
                            const int& relX,
@@ -116,7 +116,7 @@ void CMyEngine::MouseMoved(const int& button,
     // relX and relY are screen position relative to last detected mouse movement
 }
 
-void CMyEngine::MouseButtonUp(const int& button,
+void SquaredEngine::MouseButtonUp(const int& button,
                               const int& x,
                               const int& y,
                               const int& relX,
@@ -131,7 +131,7 @@ void CMyEngine::MouseButtonUp(const int& button,
 
 }
 
-void CMyEngine::MouseButtonDown(const int& button,
+void SquaredEngine::MouseButtonDown(const int& button,
                                 const int& x,
                                 const int& y,
                                 const int& relX,
@@ -146,18 +146,18 @@ void CMyEngine::MouseButtonDown(const int& button,
 
 }
 
-void CMyEngine::WindowInactive()
+void SquaredEngine::WindowInactive()
 {
     // Pause game
 }
 
-void CMyEngine::WindowActive()
+void SquaredEngine::WindowActive()
 {
     // Un-pause game
 }
 
 
-void CMyEngine::End()
+void SquaredEngine::End()
 {
   // Clean up
   if (cm != 0) {

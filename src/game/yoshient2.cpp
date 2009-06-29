@@ -1,11 +1,11 @@
 #include "yoshient2.h"
-#include "cengine.h"
+#include "engine.h"
 #include <cmath>
 
 static double direction = 0.010;
 
 YoshiEnt2::YoshiEnt2(std::string image, int frames) :
-    CEntity(image,frames),
+    Entity(image,frames),
     startX(100),
     startY(323),
     endX(150),
@@ -19,7 +19,7 @@ YoshiEnt2::YoshiEnt2(std::string image, int frames) :
 
 
 void YoshiEnt2::think(const int& elapsedTime) {
-    CEntity::think(elapsedTime);
+    Entity::think(elapsedTime);
     static double mu = 0.0; 
     static double k = 0.95;
 

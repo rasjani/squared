@@ -1,14 +1,14 @@
-#ifndef CFONTMANAGER_H
-#define CFONTMANAGER_H
+#ifndef FONTMANAGER_H
+#define FONTMANAGER_H
 
 #include <vector>
 #include <string>
 #include <SDL/SDL_ttf.h>
 
-class CFontManager {
+class FontManager {
     public:
-        CFontManager();
-        ~CFontManager();
+        FontManager();
+        ~FontManager();
 
         int addFont(std::string fontName, int defaultSize = 16);
         TTF_Font *getFont(int fontId);
@@ -17,4 +17,4 @@ class CFontManager {
         std::vector<TTF_Font*> *fonts;
 };
 
-#endif // CFONTMANAGER_H
+#endif // FONTMANAGER_H

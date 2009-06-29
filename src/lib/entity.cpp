@@ -1,10 +1,10 @@
-#include "centity.h"
-#include "csurfacemanager.h"
-#include "cengine.h"
+#include "entity.h"
+#include "surfacemanager.h"
+#include "engine.h"
 
 
 
-CEntity::CEntity(std::string image, int frames) :
+Entity::Entity(std::string image, int frames) :
     _x(0),
     _y(0),
     _width(0),
@@ -13,16 +13,16 @@ CEntity::CEntity(std::string image, int frames) :
     animControl(0),
     surface(0)
 {
-    CSurfaceManager *cm = CSurfaceManager::getInstance();
-    animControl = new CAnimation();
+    SurfaceManager *cm = SurfaceManager::getInstance();
+    animControl = new AnimationManager();
     animControl->setMaxFrames(frames);
-    animControl->setAnimStyle(CAnimation::AnimLoop);
-    surfaceId = cm->addImage(new CSurface(image));
+    animControl->setAnimStyle(AnimationManager::AnimLoop);
+    surfaceId = cm->addImage(new Surface(image));
     surface = cm->getImage(surfaceId);
 }
 
 
-CEntity::~CEntity() {
+Entity::~Entity() {
     // Surfaces are deleted by SurfaceManager
     if (animControl != 0)  {
         delete animControl;
@@ -31,7 +31,7 @@ CEntity::~CEntity() {
 }
 
 
-void CEntity::think(const int& elapsedTime) {
+void Entity::think(const int& elapsedTime) {
     UNUSED(elapsedTime);
     if (animControl != 0) {
         animControl->animate();
@@ -39,6 +39,6 @@ void CEntity::think(const int& elapsedTime) {
     _frame = animControl->getCurrentFrame();
 }
 
-void CEntity::render(SDL_Surface *destSurface) {
+void Entity::render(SDL_Surface *destSurface) {
     UNUSED(destSurface);
 }

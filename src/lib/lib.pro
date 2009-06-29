@@ -3,17 +3,17 @@ DESTDIR=../..
 TEMPLATE = lib
 TARGET = squared
 
-HEADERS += canimation.h \
-           cengine.h \
-           centity.h \
-           centitymanager.h \
-           cfontmanager.h \
-           csurface.h \
-           csurfacemanager.h
-SOURCES += cengine.cpp \
-           centity.cpp \
-           cmyanimation.cpp \
-           cmyentitymanager.cpp \
-           cmyfontmanager.cpp \
-           cmysurface.cpp \
-           cmysurfacemanager.cpp
+HEADERS += animationmanager.h \
+           engine.h \
+           entity.h \
+           entitymanager.h \
+           fontmanager.h \
+           surface.h \
+           surfacemanager.h
+SOURCES += engine.cpp \
+           entity.cpp \
+           animationmanager.cpp \
+           entitymanager.cpp \
+           fontmanager.cpp \
+           surface.cpp \
+           surfacemanager.cpp

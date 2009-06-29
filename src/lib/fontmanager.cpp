@@ -1,15 +1,15 @@
-#include "cfontmanager.h"
+#include "fontmanager.h"
 #include <SDL/SDL_ttf.h>
 #include <stdexcept>
 
-CFontManager::CFontManager() :
+FontManager::FontManager() :
   fonts(0)
 {
   fonts = new std::vector<TTF_Font*>();
   TTF_Init();
 }
 
-CFontManager::~CFontManager() {
+FontManager::~FontManager() {
   if (fonts != 0 ) {
     std::vector<TTF_Font*>::iterator it;
 
@@ -29,7 +29,7 @@ CFontManager::~CFontManager() {
 }
 
 
-int CFontManager::addFont(std::string fontName, int defaultSize ) {
+int FontManager::addFont(std::string fontName, int defaultSize ) {
   TTF_Font *f = 0;
   f = TTF_OpenFont(fontName.c_str(),defaultSize);
   if (f != 0) {
@@ -40,7 +40,7 @@ int CFontManager::addFont(std::string fontName, int defaultSize ) {
 
 }
 
-TTF_Font *CFontManager::getFont(int fontId) {
+TTF_Font *FontManager::getFont(int fontId) {
   if (fonts != 0) {
     TTF_Font *f = 0;
     try  {

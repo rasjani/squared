@@ -1,9 +1,9 @@
 #ifndef YOSHIENT2_H
 #define YOSHIENT2_H
-#include "centity.h"
+#include "entity.h"
 
 
-class YoshiEnt2 : public CEntity {
+class YoshiEnt2 : public Entity {
     public: 
     YoshiEnt2(std::string image, int frames);
 

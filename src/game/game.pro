@@ -7,12 +7,12 @@ TARGET = squared
 DEPENDPATH += .
 INCLUDEPATH += ../lib
 HEADERS += \
-    cmyengine.h \
+    squaredengine.h \
     yoshient.h \
     yoshient2.h \
 
 SOURCES += \
-    cmyengine.cpp \
+    squaredengine.cpp \
     main.cpp \
     yoshient.cpp \
     yoshient2.cpp \

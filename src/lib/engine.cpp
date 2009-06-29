@@ -1,6 +1,6 @@
-#include "cengine.h"
+#include "engine.h"
 /** Default constructor. **/
-CEngine::CEngine() :
+Engine::Engine() :
         lastTick(0),
         winWidth(800),
         winHeight(600),
@@ -16,7 +16,7 @@ CEngine::CEngine() :
 }
 
 /** Destructor. **/
-CEngine::~CEngine()
+Engine::~Engine()
 {
     if (display != 0) {
         SDL_FreeSurface(display);
@@ -29,7 +29,7 @@ CEngine::~CEngine()
         @param iWidth The width of the window
         @param iHeight The height of the window
 **/
-void CEngine::SetSize(const int& iWidth, const int& iHeight)
+void Engine::SetSize(const int& iWidth, const int& iHeight)
 {
     winWidth = iWidth;
     winHeight = iHeight;
@@ -37,7 +37,7 @@ void CEngine::SetSize(const int& iWidth, const int& iHeight)
 }
 
 /** Initialize SDL, the window and the additional data. **/
-void CEngine::Init()
+void Engine::Init()
 {
     // Register SDL_Quit to be called at exit; makes sure things are cleaned up when we quit.
     atexit( SDL_Quit );
@@ -63,7 +63,7 @@ void CEngine::Init()
 }
 
 /** The main loop. **/
-void CEngine::Start()
+void Engine::Start()
 {
     lastTick = SDL_GetTicks();
     appQuit  = false;
@@ -93,7 +93,7 @@ void CEngine::Start()
 /** Handles all controller inputs.
         @remark This function is called once per frame.
 **/
-void CEngine::HandleInput()
+void Engine::HandleInput()
 {
     // Poll for events, and handle the ones we care about.
     SDL_Event event;
@@ -163,7 +163,7 @@ void CEngine::HandleInput()
 }
 
 /** Handles the updating routine. **/
-void CEngine::DoThink()
+void Engine::DoThink()
 {
     long elapsedTicks = SDL_GetTicks() - lastTick;
     lastTick = SDL_GetTicks();
@@ -174,7 +174,7 @@ void CEngine::DoThink()
 }
 
 /** Handles the rendering and FPS calculations. **/
-void CEngine::DoRender()
+void Engine::DoRender()
 {
     ++fpsCounter;
     if ( fpsTickCounter >= 1000 )
@@ -204,7 +204,7 @@ void CEngine::DoRender()
 /** Sets the title of the window
         @param czTitle A character array that contains the text that the window title should be set to.
 **/
-void CEngine::SetTitle(const char* czTitle)
+void Engine::SetTitle(const char* czTitle)
 {
     title = czTitle;
     SDL_WM_SetCaption( title, 0 );
@@ -214,7 +214,7 @@ void CEngine::SetTitle(const char* czTitle)
         @return The last set windows title as a character array.
         @remark Only the last set title is returned. If another application has changed the window title, then that title won't be returned.
 **/
-const char* CEngine::GetTitle()
+const char* Engine::GetTitle()
 {
     return title;
 }
@@ -223,7 +223,7 @@ const char* CEngine::GetTitle()
         @return A pointer to the SDL_Surface surface
         @remark The surface is not validated internally.
 **/
-SDL_Surface* CEngine::GetSurface()
+SDL_Surface* Engine::GetSurface()
 {
     return display;
 }
@@ -232,7 +232,7 @@ SDL_Surface* CEngine::GetSurface()
         @return The number of drawn frames in the last second.
         @remark The FPS is only updated once each second.
 **/
-int CEngine::GetFPS()
+int Engine::GetFPS()
 {
     return currentFps;
 }

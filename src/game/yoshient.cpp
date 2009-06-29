@@ -1,5 +1,5 @@
 #include "yoshient.h"
-#include "cengine.h"
+#include "engine.h"
 #include <cmath>
 
 static double direction = 0.010;
@@ -19,7 +19,7 @@ static double CosineInterpolate(
 
 
 YoshiEnt::YoshiEnt(std::string image, int frames) :
-    CEntity(image,frames),
+    Entity(image,frames),
     startX(50),
     startY(50),
     endX(613),
@@ -35,7 +35,7 @@ YoshiEnt::YoshiEnt(std::string image, int frames) :
 
 
 void YoshiEnt::think(const int& elapsedTime) {
-    CEntity::think(elapsedTime);
+    Entity::think(elapsedTime);
     static double mu = 0.0; 
     static double k = 0.5;
 

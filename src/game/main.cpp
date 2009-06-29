@@ -1,4 +1,4 @@
-#include "cmyengine.h"
+#include "squaredengine.h"
 
 // Entry point
 int main(int argc, char* argv[])  // <- this must match exactly, since SDL rewrites it
@@ -6,7 +6,7 @@ int main(int argc, char* argv[])  // <- this must match exactly, since SDL rewri
     UNUSED(argc);
     UNUSED(argv);
 
-    CMyEngine Engine;
+    SquaredEngine Engine;
 
     Engine.SetTitle( "Loading..." );
     Engine.Init();
