@@ -15,4 +15,4 @@ cscope.commands=find src -name "*.h" -print > ./cscope.files ;
 cscope.commands+=find src -name "*.src" -print >> ./cscope.files ;
 cscope.commands+=cscope -b -i./cscope.files 
 
-MAKE_CLEAN += tags cscope.files cscope.out  doc/html/*
+QMAKE_CLEAN += tags cscope.files cscope.out  doc/html/*
