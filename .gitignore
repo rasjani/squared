@@ -6,4 +6,4 @@ game.pro.user
 cscope.files
 cscope.out
 tags
-
+*.swp
