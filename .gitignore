@@ -7,3 +7,5 @@ cscope.files
 cscope.out
 tags
 *.swp
+libsquared.so*
+squared
