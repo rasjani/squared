@@ -3,13 +3,15 @@
 #include <SDL/SDL_ttf.h>
 #include <sstream>
 #include <iostream>
+#include "filemanager.h"
 #include "yoshient.h"
 #include "yoshient2.h"
 
 SquaredEngine::SquaredEngine() :
     cm(0),
     fm(0),
-    cem(0)
+    cem(0),
+    fim(0)
 {}
 
 int direction = 1;
@@ -19,7 +21,9 @@ void SquaredEngine::AdditionalInit()
     cm = SurfaceManager::getInstance();
     fm = new FontManager();
     cem = new EntityManager();
+    fim = FileManager::getInstance();
 
+    fim -> addSearchPath("./data");
 
     cem->addEntity( new YoshiEnt("yoshi.bmp",8));
     cem->addEntity( new YoshiEnt2("yoshi.bmp",8));

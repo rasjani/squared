@@ -9,11 +9,16 @@ HEADERS += animationmanager.h \
            entitymanager.h \
            fontmanager.h \
            surface.h \
-           surfacemanager.h
+           surfacemanager.h \
+           filemanager.h \
+
 SOURCES += engine.cpp \
            entity.cpp \
            animationmanager.cpp \
            entitymanager.cpp \
            fontmanager.cpp \
            surface.cpp \
-           surfacemanager.cpp
+           surfacemanager.cpp \
+           filemanager.cpp \
+
+
