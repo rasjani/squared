@@ -1,0 +1,36 @@
+/*! \mainpage Squared Reference Documentation
+
+<table class="mainIndex">
+  <tr>
+    <th>Getting Started</th>
+    <th>General</th>
+    <th>Developer Resources</th>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+      <li><strong><a href="installation.html">Installation</a></strong></li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+      <li><a href="about.html">About Squared</a></li>
+      <li><a href="license.html">License</a></li>
+      <li><a href="credits.html">Credits</a></li>
+      </ul>
+    </td>
+    <td>
+      <ul>
+      <li><a href="http://wiki.github.com/rasjani/squared">Squared Wiki</a></li>
+      <li><a href="bugreporting.html">How to Report a Bug</a></li>
+      <li><a href="classes.html">All Classes</a></li>
+      <li><a href="annotated.html">Annotated Classes</a></li>
+      <li><a href="hierarchy.html">Inheritance Hierarchy</a></li>
+      <li><a href="inherits.html">Class Chart</a></li>
+      </ul>
+    </td>
+  </tr>
+
+</table>
+
+*/

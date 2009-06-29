@@ -1,4 +1,6 @@
 include(config.pri)
+include(doc/doc.pri)
+
 TEMPLATE = subdirs
 SUBDIRS= src
 
@@ -13,4 +15,4 @@ cscope.commands=find src -name "*.h" -print > ./cscope.files ;
 cscope.commands+=find src -name "*.src" -print >> ./cscope.files ;
 cscope.commands+=cscope -b -i./cscope.files 
 
-QMAKE_CLEAN += tags cscope.files cscope.out
+MAKE_CLEAN += tags cscope.files cscope.out  doc/html/*
