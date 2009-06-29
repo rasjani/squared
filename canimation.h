@@ -3,22 +3,32 @@
 
 
 class CAnimation {
+    public: 
+        enum animStyle {
+            AnimStill,
+            AnimLoop,
+            AnimSingle,
+            AnimSingleThrobbing,
+            AnimThrobbing
+        }; 
+    
+    public:
+        CAnimation();
+        void animate();
+        void setFrameRate(int rate);
+        void setCurrentFrame(int frame);
+        int getCurrentFrame();
+        void setMaxFrames(int noFrames);
+        void setAnimStyle(animStyle animationStyle); 
 
-  public:
-    CAnimation();
-    void animate();
-    void setFrameRate(int rate);
-    void setCurrentFrame(int frame);
-    int getCurrentFrame();
-    void setMaxFrames(int noFrames);
-
-  private:
-    int currFrame;
-    int frameInc;
-    int frameRate;
-    int oldTime;
-    int maxFrames;
-    bool oscillate;
+    private:
+        int currFrame;
+        int frameInc;
+        int frameRate;
+        int oldTime;
+        int maxFrames;
+        bool oscillate;
+        animStyle aStyle;
 
 };
 
