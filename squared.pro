@@ -17,9 +17,12 @@ cscope.commands+=cscope -b -i./cscope.files
 
 QMAKE_CLEAN += tags cscope.files cscope.out  doc/html/* valgrind.log
 
+QMAKE_EXTRA_TARGETS += leakcheck 
+leakcheck.target=valgrind.log
 contains(DEFINES,TIMEDEXECUTION) {
-    QMAKE_EXTRA_TARGETS += leakcheck
-    leakcheck.target=valgrind.log
     leakcheck.commands=LD_LIBRARY_PATH=. valgrind --leak-check=full --show-reachable=yes --suppressions=squared.supp ./squared 2> ./valgrind.log
     leakcheck.depends=FORCE
+} else {
+    leakcheck.commands=@echo "Run 'qmake TIMEDEXECUTION=on' before using this target"
 }
+leakcheck.depends=FORCE
