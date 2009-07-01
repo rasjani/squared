@@ -11,3 +11,4 @@ libsquared.so*
 squared
 doxygen.log
 html/
+valgrind.log
