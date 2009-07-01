@@ -58,7 +58,7 @@ class FileManager
   private:
     std::vector<std::string> *paths;
   protected:
-    static FileManager *_instance;
+    static FileManager *fmInstance;
 
   private:
     bool exists(std::string *name);
