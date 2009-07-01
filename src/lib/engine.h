@@ -2,7 +2,7 @@
 #define ENGINE_H
 
 #include "SDL/SDL.h"
-
+#include <time.h>
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
 
@@ -40,6 +40,11 @@ private:
 
     /** Stores the last calculated frame rate. **/
     int currentFps;
+
+    int sdlSubSystems;
+#ifdef TIMEDEXECUTION
+    time_t startTime;
+#endif
 
 protected:
     void DoThink();

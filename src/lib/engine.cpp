@@ -1,4 +1,5 @@
 #include "engine.h"
+#include <iostream>
 /** Default constructor. **/
 Engine::Engine() :
         lastTick(0),
@@ -10,8 +11,11 @@ Engine::Engine() :
         appMinimized(false),
         fpsTickCounter(0),
         fpsCounter(0),
-        currentFps(0)
-
+        currentFps(0),
+        sdlSubSystems(SDL_INIT_VIDEO)
+#ifdef TIMEDEXECUTION        
+        ,startTime(time(NULL))
+#endif
 {
 }
 
@@ -22,6 +26,7 @@ Engine::~Engine()
         SDL_FreeSurface(display);
         display = 0;
     }
+    SDL_QuitSubSystem(sdlSubSystems);
     SDL_Quit();
 }
 
@@ -43,7 +48,7 @@ void Engine::Init()
     atexit( SDL_Quit );
 
     // Initialize SDL's subsystems - in this case, only video.
-    if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    if ( SDL_Init( sdlSubSystems ) < 0 )
     {
         fprintf( stderr, "Unable to init SDL: %s\n", SDL_GetError() );
         exit( 1 );
@@ -165,6 +170,11 @@ void Engine::HandleInput()
 /** Handles the updating routine. **/
 void Engine::DoThink()
 {
+#ifdef TIMEDEXECUTION
+    if (time(NULL) > startTime + 30) {
+        appQuit = true;
+    }
+#endif
     long elapsedTicks = SDL_GetTicks() - lastTick;
     lastTick = SDL_GetTicks();
 
