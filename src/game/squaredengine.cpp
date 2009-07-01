@@ -178,5 +178,10 @@ void SquaredEngine::End()
     delete cem;
     cem = 0;
   }
+
+  if (fim != 0) {
+      delete fim;
+      fim = 0;
+  }
 }
 
