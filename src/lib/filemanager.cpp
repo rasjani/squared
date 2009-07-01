@@ -1,5 +1,7 @@
 #include "filemanager.h"
+#include "engine.h"
 #include <sys/stat.h>
+#include <iostream>
 
 FileManager *FileManager::_instance = NULL;
 
@@ -25,24 +27,33 @@ FileManager *FileManager::getInstance() {
 
 bool FileManager::addSearchPath(std::string path) {
     if (paths != 0) {
-        if (exists(path)) {
+        if (exists(&path)) {
             paths->push_back(path);
             return true;
         }
     } 
     return false;
 }
-
-std::string FileManager::searchFile(std::string) {
-    // TODO: Implement
+#define DIRECTORY_SEPARATOR "/"
+std::string *FileManager::searchFile(std::string fileName) {
+    std::vector<std::string>::iterator it;
+    UNUSED(fileName);
+    for (it = paths->begin(); it != paths->end(); it ++ ) {
+        std::string *fullPath = new std::string( *it + DIRECTORY_SEPARATOR + fileName );
+        if (exists(fullPath)) {
+            return fullPath;
+        } else {
+            delete fullPath;
+        }
+    }
     return 0;
 }
 
-bool FileManager::exists(std::string name) {
+bool FileManager::exists(std::string *name) {
   struct stat fileInfo;
   int intStat;
 
-  intStat = stat(name.c_str(),&fileInfo);
+  intStat = stat(name->c_str(),&fileInfo);
   if(intStat == 0) {
     return true;
   } else {

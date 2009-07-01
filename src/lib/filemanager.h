@@ -39,7 +39,7 @@ class FileManager
      *
      * @return false if path doesnt exist or unable to add path, true on success
      **/
-    bool addSearchPath(std::string path); 
+    bool addSearchPath(std::string fileName); 
 
     /**
      * @brief tries to locate given file from each entry in search path
@@ -48,7 +48,7 @@ class FileManager
      *
      * @return std::string with full path to the file, 0 on failure
      **/
-    std::string searchFile(std::string file);
+    std::string *searchFile(std::string file);
 
     /**
      * Destructor
@@ -61,7 +61,7 @@ class FileManager
     static FileManager *_instance;
 
   private:
-    bool exists(std::string);
+    bool exists(std::string *name);
 };
 
 #endif /* #ifndef FILEMANAGER_H */
