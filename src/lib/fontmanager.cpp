@@ -1,6 +1,7 @@
 #include "fontmanager.h"
 #include <SDL/SDL_ttf.h>
 #include <stdexcept>
+#include "filemanager.h"
 
 FontManager::FontManager() :
   fonts(0)
@@ -31,10 +32,14 @@ FontManager::~FontManager() {
 
 int FontManager::addFont(std::string fontName, int defaultSize ) {
   TTF_Font *f = 0;
-  f = TTF_OpenFont(fontName.c_str(),defaultSize);
-  if (f != 0) {
-    fonts->push_back(f);
-    return fonts->size()-1;
+  std::string *fullFile = 0;
+  fullFile = FileManager::getInstance()->searchFile(fontName);
+  if (fullFile != 0) {
+      f = TTF_OpenFont(fullFile->c_str(),defaultSize);
+      if (f != 0) {
+        fonts->push_back(f);
+        return fonts->size()-1;
+      }
   }
   return -1;
 

@@ -2,7 +2,9 @@
 #include <iostream>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
-
+#include "filemanager.h"
+#include <stdexcept>
+#include <iostream>
 
 
 bool Surface::setTransparency(int r, int g, int b)
@@ -37,18 +39,21 @@ SDL_Surface *Surface::getImage() {
 
 bool Surface::load(std::string filename) {
     SDL_Surface *tmp;
-
-    if (image != 0) {
+    std::string *fullFile = FileManager::getInstance()->searchFile(filename);
+    
+    if (fullFile == 0) {
         return false;
     }
 
-    if((tmp = IMG_Load(filename.c_str())) == NULL) {
+    if((tmp = IMG_Load(fullFile->c_str())) == NULL) {
+        delete fullFile;
         return false;
     }
 
     image = SDL_DisplayFormat(tmp);
     SDL_FreeSurface(tmp);
     tmp = 0;
+    delete fullFile;
     return true;
 }
 
