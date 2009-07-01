@@ -36,11 +36,13 @@ int FontManager::addFont(std::string fontName, int defaultSize ) {
   fullFile = FileManager::getInstance()->searchFile(fontName);
   if (fullFile != 0) {
       f = TTF_OpenFont(fullFile->c_str(),defaultSize);
+      delete fullFile;
       if (f != 0) {
         fonts->push_back(f);
         return fonts->size()-1;
       }
   }
+    delete fullFile;
   return -1;
 
 }
