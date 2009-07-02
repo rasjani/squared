@@ -4,7 +4,6 @@ include(doc/doc.pri)
 TEMPLATE = subdirs
 SUBDIRS= src
 
-
 QMAKE_EXTRA_TARGETS+=ctags
 ctags.depends=FORCE
 ctags.commands=ctags --exclude=Makefile -R src/ 
@@ -26,3 +25,5 @@ contains(DEFINES,TIMEDEXECUTION) {
     leakcheck.commands=@echo "Run 'qmake TIMEDEXECUTION=on' before using this target"
 }
 leakcheck.depends=FORCE
+
+include(depend.pri)

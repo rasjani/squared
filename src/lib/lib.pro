@@ -21,4 +21,4 @@ SOURCES += engine.cpp \
            surfacemanager.cpp \
            filemanager.cpp \
 
-
+include(../../depend.pri)

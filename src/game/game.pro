@@ -17,3 +17,4 @@ SOURCES += \
     yoshient.cpp \
     yoshient2.cpp \
 
+include(../../depend.pri)
