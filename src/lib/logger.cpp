@@ -25,14 +25,14 @@ Logger::Logger(char *file) :
         out->open(file, std::ios_base::app|std::ios_base::out);
     }
 
-    output("----","----",0,"Start Session");
+    output("------.---","----",0,"Start Session");
 
 }
 
 
 
 Logger::~Logger() {
-    output("----","----",0,"End Session");
+    output("------.---","----",0,"End Session");
     out->close();
 }
 
