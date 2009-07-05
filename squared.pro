@@ -26,3 +26,7 @@ contains(DEFINES,TIMEDEXECUTION) {
     leakcheck.commands=@echo "Run 'qmake TIMEDEXECUTION=on' before using this target"
 }
 leakcheck.depends=FORCE
+
+QMAKE_EXTRA_TARGETS += run
+run.commands=LD_LIBRARY_PATH=. ./squared
+run.depends=FORCE
