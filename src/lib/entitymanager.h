@@ -3,10 +3,10 @@
 
 
 #include <vector>
-
+#include "tasks.h"
 #include "entity.h"
 
-class EntityManager
+class EntityManager : public Tasks 
 {
   public:
     EntityManager();
@@ -14,8 +14,8 @@ class EntityManager
 
     int addEntity(Entity *ent);
 
-    void think(const int& elapsedTime);
-    void render(SDL_Surface *destSurface);
+    virtual void think(const int& elapsedTime);
+    virtual void render(SDL_Surface *destSurface);
 
   private:
     std::vector<Entity *> *entities;

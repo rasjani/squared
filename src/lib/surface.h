@@ -1,28 +1,44 @@
 #ifndef SURFACE_H
 #define SURFACE_H
 
-#include <string>
-#include <SDL/SDL.h>
+#include "tasks.h"
+#include "rawsurface.h"
+#include "animationmanager.h"
+/**
+ * @brief Surface ... short description ...
+ * @author Jani Mikkonen <ext-jani.3.mikkonen@nokia.com>
+ * @date 2009-07-05
+ * ... description ...
+ */
 
-class Surface {
-    public:
-        Surface();
-        Surface (std::string filename);
-        ~Surface();
+class Surface : public RawSurface, public Tasks
+{
+  public:
 
-        bool load(std::string filename);
-        bool draw(SDL_Surface *dest, int x, int y);
-        bool draw(Surface *dest, int x, int y);
+    /**
+     * Default constructor
+     */
+    Surface();
 
-        bool drawPartial(SDL_Surface *dest, int x, int y, int destX, int destY, int w, int h);
-        bool drawPartial(Surface *dest, int x, int y, int destX, int destY, int w, int h);
-        bool setTransparency(int r, int g, int b);
-        SDL_Surface *getImage();
+    Surface(std::string filename, int frames = 1 );
 
-    private:
-        SDL_Surface *image;
+    /**
+     * Destructor
+     */
+    virtual ~Surface();
 
+
+    // Inherited from Tasks
+    virtual void think(const int& elapsedTime);
+    virtual void render(SDL_Surface *destSurface);
+
+
+  protected:
+    int currentFrame;
+  private:
+
+    int noOfFrames;
+    AnimationManager *animControl;
 };
 
-
-#endif // SURFACE_H
+#endif /* #ifndef SURFACE_H */

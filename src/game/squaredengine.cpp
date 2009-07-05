@@ -33,14 +33,14 @@ void SquaredEngine::AdditionalInit()
 
 }
 
-void SquaredEngine::Think( const int& elapsedTime )
+void SquaredEngine::think( const int& elapsedTime )
 {
     cem->think(elapsedTime);
 
     // Do time-based calculations
 }
 
-void SquaredEngine::Render( SDL_Surface* destSurface )
+void SquaredEngine::render( SDL_Surface* destSurface )
 {
     // Display slick graphics on screen
 

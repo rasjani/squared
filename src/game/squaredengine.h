@@ -15,9 +15,11 @@ class SquaredEngine: public Engine
 public:
         SquaredEngine(); 
 
+
+        void think(const int& elapsedTime);
+        void render(SDL_Surface *destSurface);
+
         void AdditionalInit ();
-        void Think          ( const int& elapsedTime );
-        void Render         ( SDL_Surface* destSurface );
 
         void KeyUp          (const int& keyEnum);
         void KeyDown        (const int& keyEnum);

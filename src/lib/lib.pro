@@ -8,6 +8,7 @@ HEADERS += animationmanager.h \
            entity.h \
            entitymanager.h \
            fontmanager.h \
+           rawsurface.h \
            surface.h \
            surfacemanager.h \
            filemanager.h \
@@ -17,6 +18,7 @@ SOURCES += engine.cpp \
            animationmanager.cpp \
            entitymanager.cpp \
            fontmanager.cpp \
+           rawsurface.cpp \
            surface.cpp \
            surfacemanager.cpp \
            filemanager.cpp \

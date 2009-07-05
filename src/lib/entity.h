@@ -4,15 +4,15 @@
 #include <SDL/SDL.h>
 
 #include "surface.h"
+#include "tasks.h"
 #include "animationmanager.h"
 
-class Entity
+class Entity : public Tasks
 {
   public:
     Entity(std::string image, int frames);
 
     virtual ~Entity();
-
 
     virtual void think(const int& elapsedTime);
     virtual void render(SDL_Surface *destSurface);
@@ -22,10 +22,8 @@ class Entity
     int _y;
     int _width;
     int _height;
-    int _frame;
     int  surfaceId;
 
-    AnimationManager *animControl;
     Surface *surface;
 
 };

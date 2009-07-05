@@ -1,6 +1,6 @@
 include(../../config.pri)
 DESTDIR = ../..
-LIBS += -L../.. -lsquared
+LIBS += ../../libsquared.so
 TEMPLATE = app
 TARGET = squared
 

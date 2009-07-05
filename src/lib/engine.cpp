@@ -178,7 +178,7 @@ void Engine::DoThink()
     long elapsedTicks = SDL_GetTicks() - lastTick;
     lastTick = SDL_GetTicks();
 
-    Think( elapsedTicks );
+    think( elapsedTicks );
 
     fpsTickCounter += elapsedTicks;
 }
@@ -201,7 +201,7 @@ void Engine::DoRender()
         if ( SDL_LockSurface( display ) < 0 )
             return;
 
-    Render( GetSurface() );
+    render( GetSurface() );
 
     // Unlock if needed
     if ( SDL_MUSTLOCK( display ) )

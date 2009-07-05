@@ -39,5 +39,6 @@ void YoshiEnt2::think(const int& elapsedTime) {
 
 }
 void YoshiEnt2::render(SDL_Surface *destSurface) {
-   surface->drawPartial(destSurface,_x,_y,0,_frame*64,64,64);  
+    //TODO: currentFrame ? 
+   surface->drawPartial(destSurface,_x,_y,0,1*64,64,64);  
 }

@@ -3,12 +3,13 @@
 
 #include "SDL/SDL.h"
 #include <time.h>
+#include "tasks.h"
 
 #define UNUSED(expr) do { (void)(expr); } while (0)
 
 
 /** The base engine class. **/
-class Engine
+class Engine : public Tasks
 {
 private:
     /** Last iteration's tick value **/
@@ -61,17 +62,17 @@ public:
     void Init();
     void Start();
 
+
+    virtual void think              ( const int& iElapsedTime ) = 0;
+    virtual void render             ( SDL_Surface* pDestSurface ) = 0;
+
+
     /** OVERLOADED - Data that should be initialized when the application starts. **/
     virtual void AdditionalInit     () = 0;
 
     /** OVERLOADED - All the games calculation and updating.
                 @param iElapsedTime The time in milliseconds elapsed since the function was called last.
         **/
-    virtual void Think              ( const int& iElapsedTime ) = 0;
-    /** OVERLOADED - All the games rendering.
-                @param pDestSurface The main screen surface.
-        **/
-    virtual void Render             ( SDL_Surface* pDestSurface ) = 0;
 
     /** OVERLOADED - Allocated data that should be cleaned up. **/
     virtual void End                () = 0;
