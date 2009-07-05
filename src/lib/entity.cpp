@@ -34,6 +34,7 @@ Surface *Entity::getActiveSurface() {
 }
 void Entity::think(const int& elapsedTime) {
     UNUSED(elapsedTime);
+    getActiveSurface()->animate();
 }
 
 void Entity::render(SDL_Surface *destSurface) {
