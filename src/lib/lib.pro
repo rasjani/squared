@@ -11,6 +11,7 @@ HEADERS += animationmanager.h \
            surface.h \
            surfacemanager.h \
            filemanager.h \
+           logger.h \
 
 SOURCES += engine.cpp \
            entity.cpp \
@@ -20,5 +21,6 @@ SOURCES += engine.cpp \
            surface.cpp \
            surfacemanager.cpp \
            filemanager.cpp \
+           logger.cpp \
 
 
