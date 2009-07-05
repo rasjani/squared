@@ -7,6 +7,7 @@
 #include "support.h"
 #include "yoshient.h"
 #include "yoshient2.h"
+#include "logger.h"
 
 SquaredEngine::SquaredEngine() :
     cm(0),
@@ -18,6 +19,7 @@ SquaredEngine::SquaredEngine() :
 int direction = 1;
 void SquaredEngine::AdditionalInit()
 {
+    LOG("Loading managers ...");
     // Load up additional data
     cm = SurfaceManager::getInstance();
     fm = new FontManager();
@@ -32,6 +34,7 @@ void SquaredEngine::AdditionalInit()
     myImageId = cm->addImage(new Surface("teatteri_nologo.jpg"));
     myFontId = fm->addFont("font.ttf");
 
+    LOG("Loading managers ... done");
 }
 
 void SquaredEngine::think( const int& elapsedTime )

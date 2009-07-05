@@ -35,6 +35,7 @@ bool FileManager::addSearchPath(std::string path) {
     } 
     return false;
 }
+// TODO: Where to fetch portable file separator ? 
 #define DIRECTORY_SEPARATOR "/"
 std::string *FileManager::searchFile(std::string fileName) {
     std::vector<std::string>::iterator it;
