@@ -34,6 +34,9 @@ Logger::Logger(char *file) :
 Logger::~Logger() {
     output("------.---","----",0,"End Session");
     out->close();
+    delete out;
+    out = 0;
+    Logger::_instance = 0;
 }
 
 void Logger::output(const char* filename, const char* function, int lineno, const char* logline)
