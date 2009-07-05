@@ -5,8 +5,6 @@
 #include <time.h>
 #include "tasks.h"
 
-#define UNUSED(expr) do { (void)(expr); } while (0)
-
 
 /** The base engine class. **/
 class Engine : public Tasks

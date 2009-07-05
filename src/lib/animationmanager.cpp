@@ -7,11 +7,19 @@ AnimationManager::AnimationManager() :
     frameRate(100),
     oldTime(0),
     maxFrames(0),
-    oscillate(false),
-    aStyle(AnimStill)
+    aStyle(AnimationManager::AnimStill)
 { 
 }
 
+AnimationManager::AnimationManager(int frames, animStyle style) :
+    currFrame(0),
+    frameInc(1),
+    frameRate(100),
+    oldTime(0),
+    maxFrames(frames),
+    aStyle(style)
+{ 
+}
 void  AnimationManager::setAnimStyle(animStyle animationStyle) {
     aStyle = animationStyle;
 }
@@ -33,7 +41,7 @@ int AnimationManager::getCurrentFrame() {
 }
 
 void AnimationManager::animate() {
-      if ((unsigned int) (oldTime + frameRate) > SDL_GetTicks()) {
+    if ((unsigned int) (oldTime + frameRate) > SDL_GetTicks()) {
         return;
     }
 

@@ -3,6 +3,7 @@
 
 
 class AnimationManager {
+    friend class Surface;
     public: 
         enum animStyle {
             AnimStill,
@@ -14,6 +15,8 @@ class AnimationManager {
     
     public:
         AnimationManager();
+        AnimationManager(int frames, animStyle style= AnimLoop);
+
         void animate();
         void setFrameRate(int rate);
         void setCurrentFrame(int frame);
@@ -21,15 +24,14 @@ class AnimationManager {
         void setMaxFrames(int noFrames);
         void setAnimStyle(animStyle animationStyle); 
 
-    private:
+    protected:
         int currFrame;
         int frameInc;
         int frameRate;
         int oldTime;
         int maxFrames;
-        bool oscillate;
         animStyle aStyle;
 
 };
 
-#endif
+#endif // For ANIMATIONMANAGER_H

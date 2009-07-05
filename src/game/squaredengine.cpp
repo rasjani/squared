@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "filemanager.h"
+#include "support.h"
 #include "yoshient.h"
 #include "yoshient2.h"
 

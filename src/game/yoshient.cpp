@@ -30,7 +30,7 @@ YoshiEnt::YoshiEnt(std::string image, int frames) :
     _x = 50;
     _y = 50;
 
-    surface->setTransparency(255,0,255);
+    getActiveSurface()->setTransparency(255,0,255);
 }
 
 
@@ -53,8 +53,4 @@ void YoshiEnt::think(const int& elapsedTime) {
     _x = (int) startX + mu * (endX-startX) + k + mu* (1-mu) * (startY-endY);
     _y = (int) startY + mu * (endY-startY) + k * mu * (1-mu) * (endX-startX);
 
-}
-void YoshiEnt:: render(SDL_Surface *destSurface) {
-    //TODO: currentFrame from somewhere ? 
-   surface->drawPartial(destSurface,_x,_y,0,1*64,64,64);  
 }

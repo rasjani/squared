@@ -2,7 +2,7 @@
 #define ENTITY_H
 #include <string>
 #include <SDL/SDL.h>
-
+#include <vector>
 #include "surface.h"
 #include "tasks.h"
 #include "animationmanager.h"
@@ -10,21 +10,27 @@
 class Entity : public Tasks
 {
   public:
-    Entity(std::string image, int frames);
+    Entity(std::string image, int frames = 1, int height=64, int width=64, AnimationManager::animStyle astyle=AnimationManager::AnimLoop);
 
     virtual ~Entity();
 
     virtual void think(const int& elapsedTime);
     virtual void render(SDL_Surface *destSurface);
 
+    bool addSurface(Surface *newSurface);
+    bool setActiveSurfaceId(int surfaceId);
+
+    Surface *getActiveSurface();
+
   protected:
     int _x;
     int _y;
-    int _width;
-    int _height;
-    int  surfaceId;
+    int frameHeight;
+    int frameWidth;
+    int  activeSurfaceId;
 
-    Surface *surface;
+    std::vector<int> *surfaces;
+
 
 };
 

@@ -1,5 +1,5 @@
 #include "squaredengine.h"
-
+#include "support.h"
 // Entry point
 int main(int argc, char* argv[])  // <- this must match exactly, since SDL rewrites it
 {

@@ -8,7 +8,6 @@ class YoshiEnt : public Entity {
     YoshiEnt(std::string image, int frames);
 
     virtual void think(const int& elapsedTime);
-    virtual void render(SDL_Surface *destSurface);
 
     private:
         int startX; 

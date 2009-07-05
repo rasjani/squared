@@ -4,6 +4,8 @@
 #include "tasks.h"
 #include "rawsurface.h"
 #include "animationmanager.h"
+
+
 /**
  * @brief Surface ... short description ...
  * @author Jani Mikkonen <ext-jani.3.mikkonen@nokia.com>
@@ -11,7 +13,7 @@
  * ... description ...
  */
 
-class Surface : public RawSurface, public Tasks
+class Surface : public AnimationManager, public RawSurface, public Tasks 
 {
   public:
 
@@ -20,7 +22,7 @@ class Surface : public RawSurface, public Tasks
      */
     Surface();
 
-    Surface(std::string filename, int frames = 1 );
+    Surface(std::string filename, int frames = 1, AnimationManager::animStyle aStyle = AnimStill );
 
     /**
      * Destructor
@@ -33,12 +35,6 @@ class Surface : public RawSurface, public Tasks
     virtual void render(SDL_Surface *destSurface);
 
 
-  protected:
-    int currentFrame;
-  private:
-
-    int noOfFrames;
-    AnimationManager *animControl;
 };
 
 #endif /* #ifndef SURFACE_H */
