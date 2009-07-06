@@ -1,3 +1,4 @@
+#include "surfacemanager.h"
 #include "yoshient2.h"
 #include "engine.h"
 #include <cmath>
@@ -13,7 +14,12 @@ YoshiEnt2::YoshiEnt2(std::string image, int frames) :
 {
     _x = 100;
     _y = 323;
+    SurfaceManager *cm = SurfaceManager::getInstance();
+    Surface *another = new Surface("yoshi2.bmp",8,AnimationManager::AnimSingle);
+    another -> setTransparency(255,0,255);
 
+
+    addSurface(cm->addImage( another ));
     getActiveSurface()->setTransparency(255,0,255);
 }
 
@@ -26,9 +32,11 @@ void YoshiEnt2::think(const int& elapsedTime) {
     mu = mu + direction;
 
     if (mu > 1.0) {
+        setActiveSurfaceId(1);
         direction = -0.010;
         mu = 1.0;
     }  else if (mu<0.0) {
+        setActiveSurfaceId(0);
         direction = 0.010;
         mu = 0.0;
     }
