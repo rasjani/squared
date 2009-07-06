@@ -2,3 +2,4 @@ DONE: Move animControl to surface
 DONE: Add support for having multiple surfaces to single entity
 WORKINPROGRESS: Check all todo tags in the code
 NOTSTARTED: Refactor the Surface api with animcontrol and entity operability
+NOTSTARTED: addSurface and setActiveSurfaceId needs abit love
