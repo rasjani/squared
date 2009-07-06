@@ -7,7 +7,8 @@ AnimationManager::AnimationManager() :
     frameRate(100),
     oldTime(0),
     maxFrames(0),
-    aStyle(AnimationManager::AnimStill)
+    aStyle(AnimationManager::AnimStill),
+    backup(aStyle)
 { 
 }
 
@@ -17,9 +18,16 @@ AnimationManager::AnimationManager(int frames, animStyle style) :
     frameRate(100),
     oldTime(0),
     maxFrames(frames),
-    aStyle(style)
+    aStyle(style),
+    backup(style)
 { 
 }
+
+void AnimationManager::resetClass() {
+    aStyle = backup;
+    currFrame = 0;
+}
+
 void  AnimationManager::setAnimStyle(animStyle animationStyle) {
     aStyle = animationStyle;
 }

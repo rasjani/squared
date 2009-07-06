@@ -23,6 +23,7 @@ class AnimationManager {
         int getCurrentFrame();
         void setMaxFrames(int noFrames);
         void setAnimStyle(animStyle animationStyle); 
+        void resetClass();
 
     protected:
         int currFrame;
@@ -31,6 +32,8 @@ class AnimationManager {
         int oldTime;
         int maxFrames;
         animStyle aStyle;
+    private:
+        animStyle backup;
 
 };
 
