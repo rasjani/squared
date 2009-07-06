@@ -43,14 +43,14 @@ void Entity::render(SDL_Surface *destSurface) {
 }
 
 
-bool Entity::addSurface(Surface *newSurface) {
-    UNUSED(newSurface);
+bool Entity::addSurface(int newSurfaceId) {
+    surfaces->push_back( newSurfaceId );
     return false;    
 }
 
 
 bool Entity::setActiveSurfaceId(int surfaceId) {
     activeSurfaceId = surfaceId;
-
+    getActiveSurface()->resetClass();
     return false;
 }

@@ -17,7 +17,7 @@ class Entity : public Tasks
     virtual void think(const int& elapsedTime);
     virtual void render(SDL_Surface *destSurface);
 
-    bool addSurface(Surface *newSurface);
+    bool addSurface(int newSurfaceId);
     bool setActiveSurfaceId(int surfaceId);
 
     Surface *getActiveSurface();
