@@ -27,4 +27,4 @@ SOURCES += engine.cpp \
            logger.cpp \
            events.cpp \
 
-
+include(../../astyle.pri)

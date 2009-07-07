@@ -30,3 +30,5 @@ leakcheck.depends=FORCE
 QMAKE_EXTRA_TARGETS += run
 run.commands=LD_LIBRARY_PATH=. ./squared
 run.depends=FORCE
+
+include(astyle.pri)
