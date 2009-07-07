@@ -43,7 +43,7 @@ Logger::~Logger() {
 void Logger::output(const char* filename, const char* function, int lineno, const char* logline) {
     if (out!=0) {
         // (filename.c:102) Function: Logfile
-        *out << "(" << filename << ":" << lineno << ") " << function << ": " << logline << std::endl;
+        *out << "(" << filename << ":" << lineno << ") " << function << "(): " << logline << std::endl;
     }
 }
 

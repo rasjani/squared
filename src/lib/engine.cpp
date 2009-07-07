@@ -1,6 +1,7 @@
 #include "engine.h"
 #include "support.h"
 #include <iostream>
+#include "logger.h"
 /** Default constructor. **/
 Engine::Engine() :
         Tasks::Tasks(),
@@ -87,7 +88,8 @@ void Engine::Start() {
 
         if ( appMinimized) {
             // Release some system resources if the app. is minimized.
-            // WaitMessage(); // pause the application until focus in regained
+            SDL_WaitEvent(&event);
+            onEvent(&event);
         } else {
             // Do some thinking
             DoThink();
