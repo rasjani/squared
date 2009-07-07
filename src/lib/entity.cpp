@@ -5,12 +5,11 @@
 
 
 Entity::Entity(std::string image, int frames, int height, int width, AnimationManager::animStyle aStyle) :
-    _x(0),
-    _y(0),
-    frameHeight(height),
-    frameWidth(width),
-    surfaces(0)
-{
+        _x(0),
+        _y(0),
+        frameHeight(height),
+        frameWidth(width),
+        surfaces(0) {
     SurfaceManager *cm = SurfaceManager::getInstance();
     surfaces = new std::vector<int>();
     surfaces->push_back( cm->addImage(new Surface(image,frames,aStyle)) );
@@ -19,7 +18,7 @@ Entity::Entity(std::string image, int frames, int height, int width, AnimationMa
 
 
 Entity::~Entity() {
-    // Individual Surfaces are deleted by SurfaceManager 
+    // Individual Surfaces are deleted by SurfaceManager
 
     if (surfaces != 0) {
         delete surfaces;
@@ -32,6 +31,7 @@ Surface *Entity::getActiveSurface() {
     SurfaceManager *cm = SurfaceManager::getInstance();
     return cm->getImage(surfaces->at(activeSurfaceId));
 }
+
 void Entity::think(const int& elapsedTime) {
     UNUSED(elapsedTime);
     getActiveSurface()->animate();
@@ -45,7 +45,7 @@ void Entity::render(SDL_Surface *destSurface) {
 
 bool Entity::addSurface(int newSurfaceId) {
     surfaces->push_back( newSurfaceId );
-    return false;    
+    return false;
 }
 
 

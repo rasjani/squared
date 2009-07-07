@@ -7,29 +7,28 @@
 #include "tasks.h"
 #include "animationmanager.h"
 
-class Entity : public Tasks
-{
-  public:
-    Entity(std::string image, int frames = 1, int height=64, int width=64, AnimationManager::animStyle astyle=AnimationManager::AnimLoop);
+class Entity : public Tasks {
+    public:
+        Entity(std::string image, int frames = 1, int height=64, int width=64, AnimationManager::animStyle astyle=AnimationManager::AnimLoop);
 
-    virtual ~Entity();
+        virtual ~Entity();
 
-    virtual void think(const int& elapsedTime);
-    virtual void render(SDL_Surface *destSurface);
+        virtual void think(const int& elapsedTime);
+        virtual void render(SDL_Surface *destSurface);
 
-    bool addSurface(int newSurfaceId);
-    bool setActiveSurfaceId(int surfaceId);
+        bool addSurface(int newSurfaceId);
+        bool setActiveSurfaceId(int surfaceId);
 
-    Surface *getActiveSurface();
+        Surface *getActiveSurface();
 
-  protected:
-    int _x;
-    int _y;
-    int frameHeight;
-    int frameWidth;
-    int  activeSurfaceId;
+    protected:
+        int _x;
+        int _y;
+        int frameHeight;
+        int frameWidth;
+        int  activeSurfaceId;
 
-    std::vector<int> *surfaces;
+        std::vector<int> *surfaces;
 
 
 };

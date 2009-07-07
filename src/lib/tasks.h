@@ -12,12 +12,11 @@
  * ... description ...
  */
 
-class Tasks
-{
-  public:
+class Tasks {
+    public:
 
-    virtual void think(const int& elapsedTime) = 0;
-    virtual void render(SDL_Surface *destSurface) = 0;
+        virtual void think(const int& elapsedTime) = 0;
+        virtual void render(SDL_Surface *destSurface) = 0;
 
 };
 

@@ -17,20 +17,21 @@ Engine::Engine() :
         currentFps(0),
         speedFactor(0.0f),
         sdlSubSystems(SDL_INIT_VIDEO)
-#ifdef TIMEDEXECUTION        
+#ifdef TIMEDEXECUTION
         ,startTime(time(NULL))
 #endif
 {
 }
 
 /** Destructor. **/
-Engine::~Engine()
-{
+Engine::~Engine() {
     if (display != 0) {
         SDL_FreeSurface(display);
         display = 0;
     }
+
     SDL_QuitSubSystem(sdlSubSystems);
+
     SDL_Quit();
 }
 
@@ -38,22 +39,20 @@ Engine::~Engine()
         @param iWidth The width of the window
         @param iHeight The height of the window
 **/
-void Engine::SetSize(const int& iWidth, const int& iHeight)
-{
+void Engine::SetSize(const int& iWidth, const int& iHeight) {
     winWidth = iWidth;
     winHeight = iHeight;
     display = SDL_SetVideoMode( iWidth, iHeight, 0, SDL_SWSURFACE );
 }
 
 /** Initialize SDL, the window and the additional data. **/
-void Engine::Init()
-{
+void Engine::Init() {
     // Register SDL_Quit to be called at exit; makes sure things are cleaned up when we quit.
     atexit( SDL_Quit );
 
     // Initialize SDL's subsystems - in this case, only video.
-    if ( SDL_Init( sdlSubSystems ) < 0 )
-    {
+
+    if ( SDL_Init( sdlSubSystems ) < 0 ) {
         fprintf( stderr, "Unable to init SDL: %s\n", SDL_GetError() );
         exit( 1 );
     }
@@ -62,8 +61,7 @@ void Engine::Init()
     SetSize( winWidth, winHeight);
 
     // If we fail, return error.
-    if ( ISREALLYNULL(display) )
-    {
+    if ( ISREALLYNULL(display) ) {
         fprintf( stderr, "Unable to set up video: %s\n", SDL_GetError() );
         exit( 1 );
     }
@@ -72,17 +70,17 @@ void Engine::Init()
 }
 
 /** The main loop. **/
-void Engine::Start()
-{
+void Engine::Start() {
     lastTick = SDL_GetTicks();
     appQuit  = false;
 
     // Main loop: loop forever.
-    while ( !appQuit)
-    {
+
+    while ( !appQuit) {
         // Handle events
         // HandleInput();
         SDL_Event event;
+
         while ( SDL_PollEvent( &event ) ) {
             onEvent(&event);
         }
@@ -97,6 +95,7 @@ void Engine::Start()
             // Render stuff
             DoRender();
         }
+
         SDL_Delay(25);
     }
 
@@ -114,7 +113,8 @@ void Engine::onExit() {
 void Engine::onKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
     UNUSED(mod);
     UNUSED(unicode);
-    if (sym == SDLK_ESCAPE) 
+
+    if (sym == SDLK_ESCAPE)
         appQuit = true;
 }
 
@@ -127,18 +127,20 @@ void Engine::onRestore() {
 }
 
 /** Handles the updating routine. **/
-void Engine::DoThink()
-{
+void Engine::DoThink() {
 #ifdef TIMEDEXECUTION
+
     if (time(NULL) > startTime + 30) {
         appQuit = true;
     }
+
 #endif
     long elapsedTicks = SDL_GetTicks() - lastTick;
 
     speedFactor = ((SDL_GetTicks()-lastTick) / 1000.0f) * 32.0f;
 
     lastTick = SDL_GetTicks();
+
     think( elapsedTicks );
 
     fpsTickCounter += elapsedTicks;
@@ -149,11 +151,10 @@ float Engine::getSpeedFactor() {
 }
 
 /** Handles the rendering and FPS calculations. **/
-void Engine::DoRender()
-{
+void Engine::DoRender() {
     ++fpsCounter;
-    if ( fpsTickCounter >= 1000 )
-    {
+
+    if ( fpsTickCounter >= 1000 ) {
         currentFps  = fpsCounter;
         fpsCounter = 0;
         fpsTickCounter = 0;
@@ -162,6 +163,7 @@ void Engine::DoRender()
     SDL_FillRect( display, 0, SDL_MapRGB( display->format, 0, 0, 0 ) );
 
     // Lock surface if needed
+
     if ( SDL_MUSTLOCK( display ) )
         if ( SDL_LockSurface( display ) < 0 )
             return;
@@ -179,8 +181,7 @@ void Engine::DoRender()
 /** Sets the title of the window
         @param czTitle A character array that contains the text that the window title should be set to.
 **/
-void Engine::SetTitle(const char* czTitle)
-{
+void Engine::SetTitle(const char* czTitle) {
     title = czTitle;
     SDL_WM_SetCaption( title, 0 );
 }
@@ -189,8 +190,7 @@ void Engine::SetTitle(const char* czTitle)
         @return The last set windows title as a character array.
         @remark Only the last set title is returned. If another application has changed the window title, then that title won't be returned.
 **/
-const char* Engine::GetTitle()
-{
+const char* Engine::GetTitle() {
     return title;
 }
 
@@ -198,8 +198,7 @@ const char* Engine::GetTitle()
         @return A pointer to the SDL_Surface surface
         @remark The surface is not validated internally.
 **/
-SDL_Surface* Engine::GetSurface()
-{
+SDL_Surface* Engine::GetSurface() {
     return display;
 }
 
@@ -207,8 +206,7 @@ SDL_Surface* Engine::GetSurface()
         @return The number of drawn frames in the last second.
         @remark The FPS is only updated once each second.
 **/
-int Engine::GetFPS()
-{
+int Engine::GetFPS() {
     return currentFps;
 }
 

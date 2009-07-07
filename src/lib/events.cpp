@@ -12,32 +12,37 @@ Events::~Events() {
 }
 
 void Events::onEvent(SDL_Event *Event) {
-    switch(Event->type) {
+    switch (Event->type) {
         case SDL_ACTIVEEVENT: {
-            switch(Event->active.state) {
+            switch (Event->active.state) {
                 case SDL_APPMOUSEFOCUS: {
-                    if ( Event->active.gain )   
+                    if ( Event->active.gain )
                         onMouseFocus();
                     else
                         onMouseBlur();
+
                     break;
                 }
+
                 case SDL_APPINPUTFOCUS: {
-                    if ( Event->active.gain )   
+                    if ( Event->active.gain )
                         onInputFocus();
                     else
                         onInputBlur();
 
                     break;
                 }
+
                 case SDL_APPACTIVE: {
-                    if ( Event->active.gain )   
+                    if ( Event->active.gain )
                         onRestore();
-                    else                
+                    else
                         onMinimize();
+
                     break;
                 }
             }
+
             break;
         }
 
@@ -53,49 +58,55 @@ void Events::onEvent(SDL_Event *Event) {
 
         case SDL_MOUSEMOTION: {
             onMouseMove(Event->motion.x,
-                            Event->motion.y,
-                            Event->motion.xrel,
-                            Event->motion.yrel,
-                            (Event->motion.state&SDL_BUTTON(SDL_BUTTON_LEFT))!=0,
-                            (Event->motion.state&SDL_BUTTON(SDL_BUTTON_RIGHT))!=0,
-                            (Event->motion.state&SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0
-            );
+                        Event->motion.y,
+                        Event->motion.xrel,
+                        Event->motion.yrel,
+                        (Event->motion.state&SDL_BUTTON(SDL_BUTTON_LEFT))!=0,
+                        (Event->motion.state&SDL_BUTTON(SDL_BUTTON_RIGHT))!=0,
+                        (Event->motion.state&SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0
+                       );
             break;
         }
 
         case SDL_MOUSEBUTTONDOWN: {
-            switch(Event->button.button) {
+            switch (Event->button.button) {
                 case SDL_BUTTON_LEFT: {
                     onLButtonDown(Event->button.x,Event->button.y);
                     break;
                 }
+
                 case SDL_BUTTON_RIGHT: {
                     onRButtonDown(Event->button.x,Event->button.y);
                     break;
                 }
+
                 case SDL_BUTTON_MIDDLE: {
                     onMButtonDown(Event->button.x,Event->button.y);
                     break;
                 }
             }
+
             break;
         }
 
         case SDL_MOUSEBUTTONUP: {
-            switch(Event->button.button) {
+            switch (Event->button.button) {
                 case SDL_BUTTON_LEFT: {
                     onLButtonUp(Event->button.x,Event->button.y);
                     break;
                 }
+
                 case SDL_BUTTON_RIGHT: {
                     onRButtonUp(Event->button.x,Event->button.y);
                     break;
                 }
+
                 case SDL_BUTTON_MIDDLE: {
                     onMButtonUp(Event->button.x,Event->button.y);
                     break;
                 }
             }
+
             break;
         }
 
@@ -113,6 +124,7 @@ void Events::onEvent(SDL_Event *Event) {
             onJoyHat(Event->jhat.which,Event->jhat.hat,Event->jhat.value);
             break;
         }
+
         case SDL_JOYBUTTONDOWN: {
             onJoyButtonDown(Event->jbutton.which,Event->jbutton.button);
             break;

@@ -10,10 +10,9 @@
 #include <SDL/SDL_ttf.h>
 #include "entitymanager.h"
 
-class SquaredEngine: public Engine
-{
-public:
-        SquaredEngine(); 
+class SquaredEngine: public Engine {
+    public:
+        SquaredEngine();
 
 
         void think(const int& elapsedTime);
@@ -28,7 +27,7 @@ public:
         EntityManager *cem;
         FileManager *fim;
 
-private:
+    private:
 
         int myFontId;
         int myImageId;

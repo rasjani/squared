@@ -2,25 +2,23 @@
 #include <SDL/SDL.h>
 
 AnimationManager::AnimationManager() :
-    currFrame(0),
-    frameInc(1),
-    frameRate(100),
-    oldTime(0),
-    maxFrames(0),
-    aStyle(AnimationManager::AnimStill),
-    backup(aStyle)
-{ 
+        currFrame(0),
+        frameInc(1),
+        frameRate(100),
+        oldTime(0),
+        maxFrames(0),
+        aStyle(AnimationManager::AnimStill),
+        backup(aStyle) {
 }
 
 AnimationManager::AnimationManager(int frames, animStyle style) :
-    currFrame(0),
-    frameInc(1),
-    frameRate(100),
-    oldTime(0),
-    maxFrames(frames),
-    aStyle(style),
-    backup(style)
-{ 
+        currFrame(0),
+        frameInc(1),
+        frameRate(100),
+        oldTime(0),
+        maxFrames(frames),
+        aStyle(style),
+        backup(style) {
 }
 
 void AnimationManager::resetClass() {
@@ -33,19 +31,19 @@ void  AnimationManager::setAnimStyle(animStyle animationStyle) {
 }
 
 void AnimationManager::setMaxFrames(int noFrames) {
-  maxFrames = noFrames;
+    maxFrames = noFrames;
 }
 
 void AnimationManager::setFrameRate(int rate) {
-  frameRate = rate;
+    frameRate = rate;
 }
 
 void AnimationManager::setCurrentFrame(int frame) {
-  currFrame = frame;
+    currFrame = frame;
 }
 
 int AnimationManager::getCurrentFrame() {
-  return currFrame;
+    return currFrame;
 }
 
 void AnimationManager::animate() {
@@ -58,18 +56,26 @@ void AnimationManager::animate() {
     if (aStyle != AnimStill)  {
         currFrame += frameInc;
     }
-    switch(aStyle) {
+
+    switch (aStyle) {
         case AnimSingle:
+
             if (currFrame >= maxFrames -1 ) {
                 setAnimStyle(AnimStill);
             }
+
             break;
+
         case AnimLoop:
-            if(currFrame >= maxFrames - 1) {
-              currFrame = 0;
+
+            if (currFrame >= maxFrames - 1) {
+                currFrame = 0;
             }
+
             break;
+
         case AnimSingleThrobbing:
+
             if (frameInc > 0) {
                 if (currFrame >= maxFrames - 1 ) {
                     frameInc = -frameInc;
@@ -80,8 +86,11 @@ void AnimationManager::animate() {
                     frameInc = -frameInc;
                 }
             }
+
             break;
+
         case AnimThrobbing:
+
             if (frameInc > 0) {
                 if (currFrame >= maxFrames - 1 ) {
                     frameInc = -frameInc;
@@ -91,7 +100,9 @@ void AnimationManager::animate() {
                     frameInc = -frameInc;
                 }
             }
+
             break;
+
         default:
             break;
     }

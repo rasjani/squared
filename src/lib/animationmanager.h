@@ -3,16 +3,17 @@
 
 
 class AnimationManager {
-    friend class Surface;
-    public: 
+
+        friend class Surface;
+    public:
         enum animStyle {
             AnimStill,
             AnimLoop,
             AnimSingle,
             AnimSingleThrobbing,
             AnimThrobbing
-        }; 
-    
+        };
+
     public:
         AnimationManager();
         AnimationManager(int frames, animStyle style= AnimLoop);
@@ -22,7 +23,7 @@ class AnimationManager {
         void setCurrentFrame(int frame);
         int getCurrentFrame();
         void setMaxFrames(int noFrames);
-        void setAnimStyle(animStyle animationStyle); 
+        void setAnimStyle(animStyle animationStyle);
         void resetClass();
 
     protected:

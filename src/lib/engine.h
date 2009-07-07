@@ -7,83 +7,83 @@
 #include "events.h"
 
 /** The base engine class. **/
-class Engine : public Tasks, public Events
-{
-private:
-    /** Last iteration's tick value **/
-    long lastTick;
 
-    /** Window width **/
-    int winWidth;
-    /** Window height **/
-    int winHeight;
+class Engine : public Tasks, public Events {
+    private:
+        /** Last iteration's tick value **/
+        long lastTick;
 
-    /** Has quit been called? **/
-    bool appQuit;
+        /** Window width **/
+        int winWidth;
+        /** Window height **/
+        int winHeight;
 
-    /** The title of the window **/
-    const char* title;
+        /** Has quit been called? **/
+        bool appQuit;
 
-    /** Screen surface **/
-    SDL_Surface* display;
+        /** The title of the window **/
+        const char* title;
 
-    /** Is the window minimized? **/
-    bool appMinimized;
+        /** Screen surface **/
+        SDL_Surface* display;
 
-    /** Variables to calculate the frame rate **/
-    /** Tick counter. **/
-    int fpsTickCounter;
+        /** Is the window minimized? **/
+        bool appMinimized;
 
-    /** Frame rate counter. **/
-    int fpsCounter;
+        /** Variables to calculate the frame rate **/
+        /** Tick counter. **/
+        int fpsTickCounter;
 
-    /** Stores the last calculated frame rate. **/
-    int currentFps;
-    float speedFactor;
-    int sdlSubSystems;
+        /** Frame rate counter. **/
+        int fpsCounter;
+
+        /** Stores the last calculated frame rate. **/
+        int currentFps;
+        float speedFactor;
+        int sdlSubSystems;
 #ifdef TIMEDEXECUTION
-    time_t startTime;
+        time_t startTime;
 #endif
 
-protected:
-    void DoThink();
-    void DoRender();
+    protected:
+        void DoThink();
+        void DoRender();
 
-    void SetSize(const int& iWidth, const int& iHeight);
+        void SetSize(const int& iWidth, const int& iHeight);
 
-public:
-    Engine();
-    virtual ~Engine();
+    public:
+        Engine();
+        virtual ~Engine();
 
-    void Init();
-    void Start();
-    float getSpeedFactor();
+        void Init();
+        void Start();
+        float getSpeedFactor();
 
-    //  Inherited from Tasks 
-    virtual void think              ( const int& iElapsedTime ) = 0;
-    virtual void render             ( SDL_Surface* pDestSurface ) = 0;
-
-
-    // Inherited from Events
-    virtual void onEvent(SDL_Event* Event);
-    virtual void onExit();
-    virtual void onKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
-    virtual void onMinimize();
-    virtual void onRestore();
+        //  Inherited from Tasks
+        virtual void think              ( const int& iElapsedTime ) = 0;
+        virtual void render             ( SDL_Surface* pDestSurface ) = 0;
 
 
-    /** OVERLOADED - Data that should be initialized when the application starts. **/
-    virtual void AdditionalInit     () = 0;
+        // Inherited from Events
+        virtual void onEvent(SDL_Event* Event);
+        virtual void onExit();
+        virtual void onKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
+        virtual void onMinimize();
+        virtual void onRestore();
 
-    /** OVERLOADED - Allocated data that should be cleaned up. **/
-    virtual void End                () = 0;
 
-    void            SetTitle        (const char* czTitle);
-    const char*     GetTitle        ();
+        /** OVERLOADED - Data that should be initialized when the application starts. **/
+        virtual void AdditionalInit     () = 0;
 
-    SDL_Surface*    GetSurface      ();
+        /** OVERLOADED - Allocated data that should be cleaned up. **/
+        virtual void End                () = 0;
 
-    int             GetFPS          ();
+        void            SetTitle        (const char* czTitle);
+        const char*     GetTitle        ();
+
+        SDL_Surface*    GetSurface      ();
+
+        int             GetFPS          ();
 };
 
 #endif // CENGINE_H

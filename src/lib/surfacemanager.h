@@ -9,7 +9,7 @@ class SurfaceManager {
     private:
         SurfaceManager();
 
-    public:        
+    public:
         ~SurfaceManager();
 
         static SurfaceManager *getInstance();

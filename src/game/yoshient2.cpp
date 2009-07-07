@@ -6,12 +6,11 @@
 static double direction = 0.010;
 
 YoshiEnt2::YoshiEnt2(std::string image, int frames) :
-    Entity(image,frames),
-    startX(100),
-    startY(323),
-    endX(150),
-    endY(400)
-{
+        Entity(image,frames),
+        startX(100),
+        startY(323),
+        endX(150),
+        endY(400) {
     _x = 100;
     _y = 323;
     SurfaceManager *cm = SurfaceManager::getInstance();
@@ -26,7 +25,7 @@ YoshiEnt2::YoshiEnt2(std::string image, int frames) :
 
 void YoshiEnt2::think(const int& elapsedTime) {
     Entity::think(elapsedTime);
-    static double mu = 0.0; 
+    static double mu = 0.0;
     static double k = 0.95;
 
     mu = mu + direction;
@@ -40,9 +39,11 @@ void YoshiEnt2::think(const int& elapsedTime) {
         direction = 0.010;
         mu = 0.0;
     }
+
     // interpolatex= x1 + mu * (x2-x1) + k*mu*(1-mu)*(y1-y2)
     // interpolatey= y1 + mu * (y2-y1) + k*mu*(1-mu)*(x2-x1)
     _x = (int) startX + mu * (endX-startX) + k + mu* (1-mu) * (startY-endY);
+
     _y = (int) startY + mu * (endY-startY) + k * mu * (1-mu) * (endX-startX);
 
 }

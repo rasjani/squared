@@ -19,14 +19,13 @@ static double CosineInterpolate(
 
 
 YoshiEnt::YoshiEnt(std::string image, int frames) :
-    Entity(image,frames),
-    startX(50),
-    startY(50),
-    endX(613),
-    endY(398),
-    betweenX(100),
-    betweenY(10)
-{
+        Entity(image,frames),
+        startX(50),
+        startY(50),
+        endX(613),
+        endY(398),
+        betweenX(100),
+        betweenY(10) {
     _x = 50;
     _y = 50;
 
@@ -36,7 +35,7 @@ YoshiEnt::YoshiEnt(std::string image, int frames) :
 
 void YoshiEnt::think(const int& elapsedTime) {
     Entity::think(elapsedTime);
-    static double mu = 0.0; 
+    static double mu = 0.0;
     static double k = 0.5;
 
     mu = mu + direction;
@@ -48,9 +47,11 @@ void YoshiEnt::think(const int& elapsedTime) {
         direction = 0.010;
         mu = 0.0;
     }
+
     // interpolatex= x1 + mu * (x2-x1) + k*mu*(1-mu)*(y1-y2)
     // interpolatey= y1 + mu * (y2-y1) + k*mu*(1-mu)*(x2-x1)
     _x = (int) startX + mu * (endX-startX) + k + mu* (1-mu) * (startY-endY);
+
     _y = (int) startY + mu * (endY-startY) + k * mu * (1-mu) * (endX-startX);
 
 }

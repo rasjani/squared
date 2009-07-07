@@ -8,14 +8,14 @@
 #include "support.h"
 
 
-bool RawSurface::setTransparency(int r, int g, int b)
-{
-  if(ISREALLYNULL(image)) {
-    return false;
-  }
+bool RawSurface::setTransparency(int r, int g, int b) {
+    if (ISREALLYNULL(image)) {
+        return false;
+    }
 
-  SDL_SetColorKey(image , SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(image->format, r, g, b));
-  return true;
+    SDL_SetColorKey(image , SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(image->format, r, g, b));
+
+    return true;
 }
 
 RawSurface::RawSurface() :
@@ -23,8 +23,7 @@ RawSurface::RawSurface() :
 }
 
 RawSurface::RawSurface(std::string filename) :
-        image(0)
-{
+        image(0) {
     load(filename);
 }
 
@@ -34,6 +33,7 @@ RawSurface::~RawSurface() {
         image = 0;
     }
 }
+
 SDL_Surface *RawSurface::getImage() {
     return image;
 }
@@ -41,17 +41,18 @@ SDL_Surface *RawSurface::getImage() {
 bool RawSurface::load(std::string filename) {
     SDL_Surface *tmp;
     std::string *fullFile = FileManager::getInstance()->searchFile(filename);
-    
+
     if (fullFile == 0) {
         return false;
     }
 
-    if((tmp = IMG_Load(fullFile->c_str())) == NULL) {
+    if ((tmp = IMG_Load(fullFile->c_str())) == NULL) {
         delete fullFile;
         return false;
     }
 
     image = SDL_DisplayFormat(tmp);
+
     SDL_FreeSurface(tmp);
     tmp = 0;
     delete fullFile;
@@ -67,6 +68,7 @@ bool RawSurface::draw(SDL_Surface* dest, int x, int y) {
         SDL_BlitSurface(image, NULL, dest, &d);
         return true;
     }
+
     return false;
 }
 
@@ -75,6 +77,7 @@ bool RawSurface::draw(RawSurface* dest, int x, int y) {
     if ( dest != 0) {
         return draw(dest->getImage(),x,y);
     }
+
     return false;
 }
 
@@ -83,6 +86,7 @@ bool RawSurface::drawPartial(RawSurface *dest, int x, int y, int destX, int dest
     if (dest != 0) {
         return drawPartial(dest->getImage(),x,y,destX,destY,w,h);
     }
+
     return false;
 }
 
@@ -101,5 +105,6 @@ bool RawSurface::drawPartial(SDL_Surface *dest, int x, int y, int destX, int des
         SDL_BlitSurface(image, &s, dest, &d);
         return true;
     }
+
     return false;
 }

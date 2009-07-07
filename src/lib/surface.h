@@ -13,26 +13,25 @@
  * ... description ...
  */
 
-class Surface : public AnimationManager, public RawSurface, public Tasks 
-{
-  public:
+class Surface : public AnimationManager, public RawSurface, public Tasks {
+    public:
 
-    /**
-     * Default constructor
-     */
-    Surface();
+        /**
+         * Default constructor
+         */
+        Surface();
 
-    Surface(std::string filename, int frames = 1, AnimationManager::animStyle aStyle = AnimStill );
+        Surface(std::string filename, int frames = 1, AnimationManager::animStyle aStyle = AnimStill );
 
-    /**
-     * Destructor
-     */
-    virtual ~Surface();
+        /**
+         * Destructor
+         */
+        virtual ~Surface();
 
 
-    // Inherited from Tasks
-    virtual void think(const int& elapsedTime);
-    virtual void render(SDL_Surface *destSurface);
+        // Inherited from Tasks
+        virtual void think(const int& elapsedTime);
+        virtual void render(SDL_Surface *destSurface);
 
 
 };

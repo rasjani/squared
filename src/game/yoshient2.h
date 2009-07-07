@@ -4,14 +4,14 @@
 
 
 class YoshiEnt2 : public Entity {
-    public: 
-    YoshiEnt2(std::string image, int frames);
+    public:
+        YoshiEnt2(std::string image, int frames);
 
-    virtual void think(const int& elapsedTime);                                                                                                                         
+        virtual void think(const int& elapsedTime);
 
 
     private:
-        int startX; 
+        int startX;
         int startY;
         int endX;
         int endY;

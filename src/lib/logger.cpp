@@ -10,15 +10,15 @@ Logger *Logger::getInstance(char *file) {
     if (!Logger::_instance) {
         Logger::_instance = new Logger(file);
     }
+
     return Logger::_instance;
 }
 
 Logger::Logger(char *file) :
-    out(0)
-{
+        out(0) {
     if (ISREALLYNULL(file)) {
         // TODO: This is not portable! What would be the right
-        // way to open stdout ?  
+        // way to open stdout ?
         out = new std::ofstream();
         out->open("/dev/stdout", std::ios_base::app|std::ios_base::out);
     } else {
@@ -40,11 +40,10 @@ Logger::~Logger() {
     Logger::_instance = 0;
 }
 
-void Logger::output(const char* filename, const char* function, int lineno, const char* logline)
-{
+void Logger::output(const char* filename, const char* function, int lineno, const char* logline) {
     if (out!=0) {
-        // (filename.c:102) Function: Logfile            
-        *out << "(" << filename << ":" << lineno << ") " << function << ": " << logline << std::endl; 
+        // (filename.c:102) Function: Logfile
+        *out << "(" << filename << ":" << lineno << ") " << function << ": " << logline << std::endl;
     }
 }
 

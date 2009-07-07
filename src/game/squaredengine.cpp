@@ -10,15 +10,13 @@
 #include "logger.h"
 
 SquaredEngine::SquaredEngine() :
-    cm(0),
-    fm(0),
-    cem(0),
-    fim(0)
-{}
+        cm(0),
+        fm(0),
+        cem(0),
+        fim(0) {}
 
 int direction = 1;
-void SquaredEngine::AdditionalInit()
-{
+void SquaredEngine::AdditionalInit() {
     LOG("Loading managers ...");
     // Load up additional data
     cm = SurfaceManager::getInstance();
@@ -37,18 +35,17 @@ void SquaredEngine::AdditionalInit()
     LOG("Loading managers ... done");
 }
 
-void SquaredEngine::think( const int& elapsedTime )
-{
+void SquaredEngine::think( const int& elapsedTime ) {
     cem->think(elapsedTime);
 
     // Do time-based calculations
 }
 
-void SquaredEngine::render( SDL_Surface* destSurface )
-{
+void SquaredEngine::render( SDL_Surface* destSurface ) {
     // Display slick graphics on screen
 
     Surface *image = cm->getImage(myImageId);
+
     if (image != 0) {
         image->draw(destSurface,10,10);
     }
@@ -61,7 +58,7 @@ void SquaredEngine::render( SDL_Surface* destSurface )
         d.y = 100;
         SDL_Color fontcolor={250,250,250,0};
         std::stringstream ss;
-        ss  << GetFPS(); 
+        ss  << GetFPS();
         // ss  << a->getCurrentFrame();
         std::string foo;
         ss >> foo;
@@ -71,27 +68,26 @@ void SquaredEngine::render( SDL_Surface* destSurface )
     }
 }
 
-void SquaredEngine::End()
-{
-  // Clean up
-  if (cm != 0) {
-    delete cm;
-    cm = 0;
-  }
+void SquaredEngine::End() {
+    // Clean up
+    if (cm != 0) {
+        delete cm;
+        cm = 0;
+    }
 
-  if (fm != 0) {
-    delete fm;
-    fm = 0;
-  }
+    if (fm != 0) {
+        delete fm;
+        fm = 0;
+    }
 
-  if (cem != 0) {
-    delete cem;
-    cem = 0;
-  }
+    if (cem != 0) {
+        delete cem;
+        cem = 0;
+    }
 
-  if (fim != 0) {
-      delete fim;
-      fim = 0;
-  }
+    if (fim != 0) {
+        delete fim;
+        fim = 0;
+    }
 }
 

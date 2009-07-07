@@ -3,8 +3,7 @@
 #include "logger.h"
 
 // Entry point
-int main(int argc, char* argv[])  // <- this must match exactly, since SDL rewrites it
-{
+int main(int argc, char* argv[]) { // <- this must match exactly, since SDL rewrites it
     UNUSED(argc);
     UNUSED(argv);
     Logger *logger = Logger::getInstance();
@@ -26,8 +25,10 @@ int main(int argc, char* argv[])  // <- this must match exactly, since SDL rewri
     LOG( "SDL Testing!");
     Engine.SetTitle( "Quitting..." );
     LOG( "quit!!");
-    if (! (ISREALLYNULL(logger))) 
+
+    if (! (ISREALLYNULL(logger)))
         delete logger;
+
     return 0;
 }
 

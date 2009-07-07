@@ -6,19 +6,18 @@
 #include "tasks.h"
 #include "entity.h"
 
-class EntityManager : public Tasks 
-{
-  public:
-    EntityManager();
-    ~EntityManager();
+class EntityManager : public Tasks {
+    public:
+        EntityManager();
+        ~EntityManager();
 
-    int addEntity(Entity *ent);
+        int addEntity(Entity *ent);
 
-    virtual void think(const int& elapsedTime);
-    virtual void render(SDL_Surface *destSurface);
+        virtual void think(const int& elapsedTime);
+        virtual void render(SDL_Surface *destSurface);
 
-  private:
-    std::vector<Entity *> *entities;
+    private:
+        std::vector<Entity *> *entities;
 
 };
 
