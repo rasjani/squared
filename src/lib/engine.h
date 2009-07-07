@@ -39,7 +39,7 @@ private:
 
     /** Stores the last calculated frame rate. **/
     int currentFps;
-
+    float speedFactor;
     int sdlSubSystems;
 #ifdef TIMEDEXECUTION
     time_t startTime;
@@ -57,6 +57,7 @@ public:
 
     void Init();
     void Start();
+    float getSpeedFactor();
 
     //  Inherited from Tasks 
     virtual void think              ( const int& iElapsedTime ) = 0;

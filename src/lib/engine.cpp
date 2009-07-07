@@ -15,6 +15,7 @@ Engine::Engine() :
         fpsTickCounter(0),
         fpsCounter(0),
         currentFps(0),
+        speedFactor(0.0f),
         sdlSubSystems(SDL_INIT_VIDEO)
 #ifdef TIMEDEXECUTION        
         ,startTime(time(NULL))
@@ -134,11 +135,17 @@ void Engine::DoThink()
     }
 #endif
     long elapsedTicks = SDL_GetTicks() - lastTick;
-    lastTick = SDL_GetTicks();
 
+    speedFactor = ((SDL_GetTicks()-lastTick) / 1000.0f) * 32.0f;
+
+    lastTick = SDL_GetTicks();
     think( elapsedTicks );
 
     fpsTickCounter += elapsedTicks;
+}
+
+float Engine::getSpeedFactor() {
+    return speedFactor;
 }
 
 /** Handles the rendering and FPS calculations. **/

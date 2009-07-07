@@ -26,7 +26,8 @@ int main(int argc, char* argv[])  // <- this must match exactly, since SDL rewri
     LOG( "SDL Testing!");
     Engine.SetTitle( "Quitting..." );
     LOG( "quit!!");
-    delete logger;
+    if (! (ISREALLYNULL(logger))) 
+        delete logger;
     return 0;
 }
 
