@@ -52,6 +52,8 @@ class Events {
 
     private:
 
+        bool inputFocus;
+
 };
 
 #endif /* #ifndef EVENTS_H */

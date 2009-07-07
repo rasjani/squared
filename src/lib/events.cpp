@@ -1,62 +1,59 @@
 #include "events.h"
 #include "support.h"
+#include "logger.h"
+#include <iostream>
 
-
-Events::Events() {
+Events::Events() :
+    inputFocus(true) {
 
 }
 
 Events::~Events() {
 
-
 }
 
 void Events::onEvent(SDL_Event *Event) {
     switch (Event->type) {
-        case SDL_ACTIVEEVENT: {
+        case SDL_ACTIVEEVENT:
+
             switch (Event->active.state) {
-                case SDL_APPMOUSEFOCUS: {
+                case SDL_APPMOUSEFOCUS:
+
                     if ( Event->active.gain )
                         onMouseFocus();
                     else
                         onMouseBlur();
 
                     break;
-                }
 
-                case SDL_APPINPUTFOCUS: {
+                case SDL_APPINPUTFOCUS:
                     if ( Event->active.gain )
                         onInputFocus();
                     else
                         onInputBlur();
 
                     break;
-                }
 
-                case SDL_APPACTIVE: {
-                    if ( Event->active.gain )
-                        onRestore();
-                    else
+                case SDL_APPACTIVE:
+                    if ( Event->active.gain == 0 )
                         onMinimize();
+                    else
+                        onRestore();
 
                     break;
-                }
             }
 
             break;
-        }
 
-        case SDL_KEYDOWN: {
+        case SDL_KEYDOWN:
             onKeyDown(Event->key.keysym.sym,Event->key.keysym.mod,Event->key.keysym.unicode);
             break;
-        }
 
-        case SDL_KEYUP: {
+        case SDL_KEYUP:
             onKeyUp(Event->key.keysym.sym,Event->key.keysym.mod,Event->key.keysym.unicode);
             break;
-        }
 
-        case SDL_MOUSEMOTION: {
+        case SDL_MOUSEMOTION:
             onMouseMove(Event->motion.x,
                         Event->motion.y,
                         Event->motion.xrel,
@@ -66,109 +63,89 @@ void Events::onEvent(SDL_Event *Event) {
                         (Event->motion.state&SDL_BUTTON(SDL_BUTTON_MIDDLE))!=0
                        );
             break;
-        }
 
-        case SDL_MOUSEBUTTONDOWN: {
-            switch (Event->button.button) {
-                case SDL_BUTTON_LEFT: {
+        case SDL_MOUSEBUTTONDOWN: 
+            switch (Event->button.button)  {
+                case SDL_BUTTON_LEFT: 
                     onLButtonDown(Event->button.x,Event->button.y);
                     break;
-                }
 
-                case SDL_BUTTON_RIGHT: {
+                case SDL_BUTTON_RIGHT: 
                     onRButtonDown(Event->button.x,Event->button.y);
                     break;
-                }
 
-                case SDL_BUTTON_MIDDLE: {
+                case SDL_BUTTON_MIDDLE: 
                     onMButtonDown(Event->button.x,Event->button.y);
                     break;
-                }
             }
 
             break;
-        }
 
-        case SDL_MOUSEBUTTONUP: {
+        case SDL_MOUSEBUTTONUP: 
             switch (Event->button.button) {
-                case SDL_BUTTON_LEFT: {
+                case SDL_BUTTON_LEFT:
                     onLButtonUp(Event->button.x,Event->button.y);
                     break;
-                }
 
-                case SDL_BUTTON_RIGHT: {
+                case SDL_BUTTON_RIGHT:
                     onRButtonUp(Event->button.x,Event->button.y);
                     break;
-                }
 
-                case SDL_BUTTON_MIDDLE: {
+                case SDL_BUTTON_MIDDLE: 
                     onMButtonUp(Event->button.x,Event->button.y);
                     break;
-                }
             }
 
             break;
-        }
 
-        case SDL_JOYAXISMOTION: {
+        case SDL_JOYAXISMOTION: 
             onJoyAxis(Event->jaxis.which,Event->jaxis.axis,Event->jaxis.value);
             break;
-        }
 
-        case SDL_JOYBALLMOTION: {
+        case SDL_JOYBALLMOTION: 
             onJoyBall(Event->jball.which,Event->jball.ball,Event->jball.xrel,Event->jball.yrel);
             break;
-        }
 
-        case SDL_JOYHATMOTION: {
+        case SDL_JOYHATMOTION: 
             onJoyHat(Event->jhat.which,Event->jhat.hat,Event->jhat.value);
             break;
-        }
 
-        case SDL_JOYBUTTONDOWN: {
+        case SDL_JOYBUTTONDOWN: 
             onJoyButtonDown(Event->jbutton.which,Event->jbutton.button);
             break;
-        }
 
-        case SDL_JOYBUTTONUP: {
+        case SDL_JOYBUTTONUP: 
             onJoyButtonUp(Event->jbutton.which,Event->jbutton.button);
             break;
-        }
 
-        case SDL_QUIT: {
+        case SDL_QUIT: 
             onExit();
             break;
-        }
 
-        case SDL_SYSWMEVENT: {
-            //Ignore
+        case SDL_SYSWMEVENT:
             break;
-        }
 
-        case SDL_VIDEORESIZE: {
+        case SDL_VIDEORESIZE: 
             onResize(Event->resize.w,Event->resize.h);
             break;
-        }
 
-        case SDL_VIDEOEXPOSE: {
+        case SDL_VIDEOEXPOSE: 
             onExpose();
             break;
-        }
 
-        default: {
+        default: 
             onUser(Event->user.type,Event->user.code,Event->user.data1,Event->user.data2);
             break;
-        }
     }
 
 }
 
 void Events::onInputFocus() {
-    //Pure virtual, do nothing
+    inputFocus = true;
 }
 
 void Events::onInputBlur() {
-    //Pure virtual, do nothing
+    inputFocus = false;
 }
 
 void Events::onKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
@@ -183,6 +160,13 @@ void Events::onKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
     UNUSED(sym);
     UNUSED(mod);
     UNUSED(unicode);
+    // THIS IS A HACK!
+    // For some reason on my own machine, when i background the application
+    // i wont receive the onMinimize() event but i do get onInputBlur && onKeyUp 
+    // with NUMLOCK !!!  Bug in SDL? 
+    if (inputFocus == false && sym == SDLK_NUMLOCK) {
+        onMinimize();
+    }
 }
 
 void Events::onMouseFocus() {
