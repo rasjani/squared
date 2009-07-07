@@ -1,4 +1,5 @@
 #include "engine.h"
+#include "support.h"
 #include <iostream>
 /** Default constructor. **/
 Engine::Engine() :
@@ -58,7 +59,7 @@ void Engine::Init()
     SetSize( winWidth, winHeight);
 
     // If we fail, return error.
-    if ( display == NULL )
+    if ( ISREALLYNULL(display) )
     {
         fprintf( stderr, "Unable to set up video: %s\n", SDL_GetError() );
         exit( 1 );

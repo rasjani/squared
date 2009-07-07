@@ -5,11 +5,12 @@
 #include "filemanager.h"
 #include <stdexcept>
 #include <iostream>
+#include "support.h"
 
 
 bool RawSurface::setTransparency(int r, int g, int b)
 {
-  if(image == NULL) {
+  if(ISREALLYNULL(image)) {
     return false;
   }
 

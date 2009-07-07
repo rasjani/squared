@@ -1,4 +1,5 @@
 #include "logger.h"
+#include "support.h"
 #include <iostream>
 
 
@@ -15,9 +16,9 @@ Logger *Logger::getInstance(char *file) {
 Logger::Logger(char *file) :
     out(0)
 {
-    // TODO: Make macro out of this, isReallyNull() to support.h 
-    if (file==0 || file==NULL) {
-        // TODO: This is not portable!
+    if (ISREALLYNULL(file)) {
+        // TODO: This is not portable! What would be the right
+        // way to open stdout ?  
         out = new std::ofstream();
         out->open("/dev/stdout", std::ios_base::app|std::ios_base::out);
     } else {
