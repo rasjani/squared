@@ -1,8 +1,7 @@
 #include "entitymanager.h"
 
 
-EntityManager::EntityManager()
-        :
+EntityManager::EntityManager() :
         entities(0) {
     entities = new std::vector<Entity*>();
 }
@@ -22,7 +21,6 @@ EntityManager::~EntityManager() {
         }
 
         delete entities;
-
         entities = 0;
     }
 }

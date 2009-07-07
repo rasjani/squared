@@ -1,6 +1,10 @@
 #include "animationmanager.h"
 #include <SDL/SDL.h>
 
+/**
+ * @brief Default constructor
+ *
+ **/
 AnimationManager::AnimationManager() :
         currFrame(0),
         frameInc(1),
