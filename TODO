@@ -2,4 +2,6 @@
 2) Add support for having multiple surfaces to single entity [DONE]
 3) Windows compilation ?
 4) Write a statemanager
-6) Standardize the Task interface to all classes
+6) Standardize the Task interface to all classes / requires state manager
+7) Separate "Window" class from engine
+8) Separate FPS couting from engine 
