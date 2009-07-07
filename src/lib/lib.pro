@@ -13,6 +13,7 @@ HEADERS += animationmanager.h \
            surfacemanager.h \
            filemanager.h \
            logger.h \
+           events.h \
 
 SOURCES += engine.cpp \
            entity.cpp \
@@ -24,5 +25,6 @@ SOURCES += engine.cpp \
            surfacemanager.cpp \
            filemanager.cpp \
            logger.cpp \
+           events.cpp \
 
 

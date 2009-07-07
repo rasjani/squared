@@ -3,6 +3,8 @@
 #include <iostream>
 /** Default constructor. **/
 Engine::Engine() :
+        Tasks::Tasks(),
+        Events::Events(),
         lastTick(0),
         winWidth(800),
         winHeight(600),
@@ -77,8 +79,12 @@ void Engine::Start()
     // Main loop: loop forever.
     while ( !appQuit)
     {
-        // Handle mouse and keyboard input
-        HandleInput();
+        // Handle events
+        // HandleInput();
+        SDL_Event event;
+        while ( SDL_PollEvent( &event ) ) {
+            onEvent(&event);
+        }
 
         if ( appMinimized) {
             // Release some system resources if the app. is minimized.
@@ -96,76 +102,27 @@ void Engine::Start()
     End();
 }
 
-/** Handles all controller inputs.
-        @remark This function is called once per frame.
-**/
-void Engine::HandleInput()
-{
-    // Poll for events, and handle the ones we care about.
-    SDL_Event event;
-    while ( SDL_PollEvent( &event ) )
-    {
-        switch ( event.type )
-        {
-                case SDL_KEYDOWN:
-            // If escape is pressed set the Quit-flag
-            if (event.key.keysym.sym == SDLK_ESCAPE)
-            {
-                appQuit = true;
-                break;
-            }
+void Engine::onEvent(SDL_Event* Event) {
+    Events::onEvent(Event);
+}
 
-            KeyDown( event.key.keysym.sym );
-            break;
+void Engine::onExit() {
+    appQuit = true;
+}
 
-                case SDL_KEYUP:
-            KeyUp( event.key.keysym.sym );
-            break;
+void Engine::onKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
+    UNUSED(mod);
+    UNUSED(unicode);
+    if (sym == SDLK_ESCAPE) 
+        appQuit = true;
+}
 
-                case SDL_QUIT:
-            appQuit = true;
-            break;
+void Engine::onMinimize() {
+    appMinimized = true;
+}
 
-                case SDL_MOUSEMOTION:
-            MouseMoved(
-                    event.button.button,
-                    event.motion.x,
-                    event.motion.y,
-                    event.motion.xrel,
-                    event.motion.yrel);
-            break;
-
-                case SDL_MOUSEBUTTONUP:
-            MouseButtonUp(
-                    event.button.button,
-                    event.motion.x,
-                    event.motion.y,
-                    event.motion.xrel,
-                    event.motion.yrel);
-            break;
-
-                case SDL_MOUSEBUTTONDOWN:
-            MouseButtonDown(
-                    event.button.button,
-                    event.motion.x,
-                    event.motion.y,
-                    event.motion.xrel,
-                    event.motion.yrel);
-            break;
-
-                case SDL_ACTIVEEVENT:
-            if ( event.active.state & SDL_APPACTIVE ) {
-                if ( event.active.gain ) {
-                    appMinimized = false;
-                    WindowActive();
-                } else {
-                    appMinimized = true;
-                    WindowInactive();
-                }
-            }
-            break;
-        } // switch
-    } // while (handling input)
+void Engine::onRestore() {
+    appMinimized = false;
 }
 
 /** Handles the updating routine. **/

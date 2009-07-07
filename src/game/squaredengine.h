@@ -21,30 +21,6 @@ public:
 
         void AdditionalInit ();
 
-        void KeyUp          (const int& keyEnum);
-        void KeyDown        (const int& keyEnum);
-
-        void MouseMoved     (const int& button,
-                             const int& x,
-                             const int& y,
-                             const int& relX,
-                             const int& relY);
-
-        void MouseButtonUp  (const int& button,
-                             const int& x,
-                             const int& y,
-                             const int& relX,
-                             const int& relY);
-
-        void MouseButtonDown(const int& button,
-                             const int& x,
-                             const int& y,
-                             const int& relX,
-                             const int& relY);
-
-        void WindowInactive();
-        void WindowActive();
-
         void End();
 
         SurfaceManager *cm;
