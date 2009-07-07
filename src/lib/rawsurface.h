@@ -2,7 +2,7 @@
 #define RAWSURFACE_H
 
 #include <string>
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 class RawSurface {
     public:

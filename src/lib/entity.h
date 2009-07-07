@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include <string>
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include <vector>
 #include "surface.h"
 #include "tasks.h"

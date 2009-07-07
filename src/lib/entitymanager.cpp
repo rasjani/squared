@@ -21,6 +21,7 @@ EntityManager::~EntityManager() {
         }
 
         delete entities;
+
         entities = 0;
     }
 }

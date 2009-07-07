@@ -7,7 +7,7 @@
 #include "filemanager.h"
 #include "surface.h"
 #include <stdlib.h>
-#include <SDL/SDL_ttf.h>
+#include <SDL_ttf.h>
 #include "entitymanager.h"
 
 class SquaredEngine: public Engine {

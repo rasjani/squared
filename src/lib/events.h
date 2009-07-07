@@ -1,7 +1,7 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 /**
  * @brief Events ... short description ...

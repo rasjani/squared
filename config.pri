@@ -1,7 +1,13 @@
 OBJECTS_DIR=.obj 
 QT-= gui core
-CONFIG += ordered link_pkgconfig warn_on
-PKGCONFIG += sdl 
+CONFIG += ordered warn_on
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += sdl 
+}
+windows {
+
+}
 LIBS += -lSDL_image -lSDL_ttf -lm
 QMAKE_CXXFLAGS += -Wall -Werror  -pedantic-errors
 

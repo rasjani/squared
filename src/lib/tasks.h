@@ -2,7 +2,7 @@
 #define TASKS_H
 
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 
 /**
