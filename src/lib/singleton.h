@@ -10,6 +10,7 @@
 #define CONSTINSTANCE n::getConstInstance()
 
 template < typename T>
+
 class Singleton {
 
     private:
@@ -17,9 +18,11 @@ class Singleton {
 
     protected:
         Singleton() { };
+
         Singleton(T* instancePointer) {
-            Singleton::sInstance= instancePointer; 
+            Singleton::sInstance= instancePointer;
         }
+
         Singleton(const Singleton &);
         Singleton& operator=(const Singleton&);
         ~Singleton()  { };
@@ -30,6 +33,7 @@ class Singleton {
             if ( ISREALLYNULL(sInstance) ) {
                 Singleton::sInstance = new T;
             }
+
             return  Singleton::sInstance;
         }
 
@@ -37,10 +41,12 @@ class Singleton {
             if ( ISREALLYNULL(sInstance) ) {
                 Singleton::sInstance = new T;
             }
+
             return *Singleton::sInstance;
         }
+
         static const T *getConstInstance() {
-             return *getInstance();            
+            return *getInstance();
         };
 
 };
