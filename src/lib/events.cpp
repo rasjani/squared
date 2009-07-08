@@ -4,7 +4,7 @@
 #include <iostream>
 
 Events::Events() :
-    inputFocus(true) {
+        inputFocus(true) {
 
 }
 
@@ -64,24 +64,26 @@ void Events::onEvent(SDL_Event *Event) {
                        );
             break;
 
-        case SDL_MOUSEBUTTONDOWN: 
+        case SDL_MOUSEBUTTONDOWN:
+
             switch (Event->button.button)  {
-                case SDL_BUTTON_LEFT: 
+                case SDL_BUTTON_LEFT:
                     onLButtonDown(Event->button.x,Event->button.y);
                     break;
 
-                case SDL_BUTTON_RIGHT: 
+                case SDL_BUTTON_RIGHT:
                     onRButtonDown(Event->button.x,Event->button.y);
                     break;
 
-                case SDL_BUTTON_MIDDLE: 
+                case SDL_BUTTON_MIDDLE:
                     onMButtonDown(Event->button.x,Event->button.y);
                     break;
             }
 
             break;
 
-        case SDL_MOUSEBUTTONUP: 
+        case SDL_MOUSEBUTTONUP:
+
             switch (Event->button.button) {
                 case SDL_BUTTON_LEFT:
                     onLButtonUp(Event->button.x,Event->button.y);
@@ -91,49 +93,49 @@ void Events::onEvent(SDL_Event *Event) {
                     onRButtonUp(Event->button.x,Event->button.y);
                     break;
 
-                case SDL_BUTTON_MIDDLE: 
+                case SDL_BUTTON_MIDDLE:
                     onMButtonUp(Event->button.x,Event->button.y);
                     break;
             }
 
             break;
 
-        case SDL_JOYAXISMOTION: 
+        case SDL_JOYAXISMOTION:
             onJoyAxis(Event->jaxis.which,Event->jaxis.axis,Event->jaxis.value);
             break;
 
-        case SDL_JOYBALLMOTION: 
+        case SDL_JOYBALLMOTION:
             onJoyBall(Event->jball.which,Event->jball.ball,Event->jball.xrel,Event->jball.yrel);
             break;
 
-        case SDL_JOYHATMOTION: 
+        case SDL_JOYHATMOTION:
             onJoyHat(Event->jhat.which,Event->jhat.hat,Event->jhat.value);
             break;
 
-        case SDL_JOYBUTTONDOWN: 
+        case SDL_JOYBUTTONDOWN:
             onJoyButtonDown(Event->jbutton.which,Event->jbutton.button);
             break;
 
-        case SDL_JOYBUTTONUP: 
+        case SDL_JOYBUTTONUP:
             onJoyButtonUp(Event->jbutton.which,Event->jbutton.button);
             break;
 
-        case SDL_QUIT: 
+        case SDL_QUIT:
             onExit();
             break;
 
         case SDL_SYSWMEVENT:
             break;
 
-        case SDL_VIDEORESIZE: 
+        case SDL_VIDEORESIZE:
             onResize(Event->resize.w,Event->resize.h);
             break;
 
-        case SDL_VIDEOEXPOSE: 
+        case SDL_VIDEOEXPOSE:
             onExpose();
             break;
 
-        default: 
+        default:
             onUser(Event->user.type,Event->user.code,Event->user.data1,Event->user.data2);
             break;
     }
@@ -162,8 +164,9 @@ void Events::onKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
     UNUSED(unicode);
     // THIS IS A HACK!
     // For some reason on my own machine, when i background the application
-    // i wont receive the onMinimize() event but i do get onInputBlur && onKeyUp 
-    // with NUMLOCK !!!  Bug in SDL? 
+    // i wont receive the onMinimize() event but i do get onInputBlur && onKeyUp
+    // with NUMLOCK !!!  Bug in SDL?
+
     if (inputFocus == false && sym == SDLK_NUMLOCK) {
         onMinimize();
     }

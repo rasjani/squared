@@ -40,7 +40,7 @@ SDL_Surface *RawSurface::getImage() {
 
 bool RawSurface::load(std::string filename) {
     SDL_Surface *tmp;
-    std::string *fullFile = FileManager::getInstance()->searchFile(filename);
+    std::string *fullFile = INSTANCEOF(FileManager).searchFile(filename);
 
     if (fullFile == 0) {
         return false;

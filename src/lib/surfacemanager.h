@@ -4,20 +4,19 @@
 #include <vector>
 #include <string>
 #include "surface.h"
+#include "singleton.h"
 
-class SurfaceManager {
+class SurfaceManager : public Singleton<SurfaceManager> {
+        DECLARE_SINGLETON(SurfaceManager);
     private:
         SurfaceManager();
 
     public:
         ~SurfaceManager();
 
-        static SurfaceManager *getInstance();
         int addImage(Surface *image);
         Surface *getImage(int imageId);
 
-    protected:
-        static SurfaceManager *manager;
     private:
         std::vector<Surface *> *images;
 

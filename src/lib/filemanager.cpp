@@ -3,7 +3,11 @@
 #include <sys/stat.h>
 #include <iostream>
 
-FileManager *FileManager::fmInstance = 0;
+// FileManager *FileManager::fmInstance = 0;
+//
+//
+
+INIT_SINGLETON(FileManager);
 
 FileManager::FileManager() :
         paths(0) {
@@ -16,15 +20,7 @@ FileManager::~FileManager() {
         paths = 0;
     }
 
-    FileManager::fmInstance = 0;
-}
-
-FileManager *FileManager::getInstance() {
-    if (!FileManager::fmInstance) {
-        FileManager::fmInstance = new FileManager();
-    }
-
-    return FileManager::fmInstance;
+//    FileManager::fmInstance = 0;
 }
 
 bool FileManager::addSearchPath(std::string path) {

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "singleton.h"
 
 /**
  * @brief FileManager ... short description ...
@@ -12,8 +13,10 @@
  * ... description ...
  */
 
-class FileManager {
-    private:
+class FileManager : public Singleton<FileManager> {
+
+        friend class Singleton<FileManager>;
+    protected:
 
         /**
          * Default constructor - private, this is singleton class
@@ -21,15 +24,6 @@ class FileManager {
         FileManager();
 
     public:
-
-        /**
-         * @brief returns singleton instance of FileManager
-         *
-         * @return pointer to FileManager
-         *
-         **/
-        static FileManager *getInstance();
-
 
         /**
          * @brief adds extra path to search paths
@@ -57,7 +51,6 @@ class FileManager {
     private:
         std::vector<std::string> *paths;
     protected:
-        static FileManager *fmInstance;
 
     private:
         bool exists(std::string *name);

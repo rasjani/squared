@@ -35,7 +35,7 @@ FontManager::~FontManager() {
 int FontManager::addFont(std::string fontName, int defaultSize ) {
     TTF_Font *f = 0;
     std::string *fullFile = 0;
-    fullFile = FileManager::getInstance()->searchFile(fontName);
+    fullFile = INSTANCEOF(FileManager).searchFile(fontName);
 
     if (fullFile != 0) {
         f = TTF_OpenFont(fullFile->c_str(),defaultSize);

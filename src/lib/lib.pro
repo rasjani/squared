@@ -7,6 +7,7 @@ HEADERS += animationmanager.h \
            engine.h \
            entity.h \
            entitymanager.h \
+           singleton.h \
            fontmanager.h \
            rawsurface.h \
            surface.h \

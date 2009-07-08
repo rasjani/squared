@@ -19,10 +19,10 @@ int direction = 1;
 void SquaredEngine::AdditionalInit() {
     LOG("Loading managers ...");
     // Load up additional data
-    cm = SurfaceManager::getInstance();
+    cm = INSTANCEPTROF(SurfaceManager);
     fm = new FontManager();
     cem = new EntityManager();
-    fim = FileManager::getInstance();
+    fim = INSTANCEPTROF(FileManager);
 
     fim -> addSearchPath("./data");
 

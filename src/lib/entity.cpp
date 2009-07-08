@@ -10,7 +10,7 @@ Entity::Entity(std::string image, int frames, int height, int width, AnimationMa
         frameHeight(height),
         frameWidth(width),
         surfaces(0) {
-    SurfaceManager *cm = SurfaceManager::getInstance();
+    SurfaceManager *cm = INSTANCEPTROF(SurfaceManager);
     surfaces = new std::vector<int>();
     surfaces->push_back( cm->addImage(new Surface(image,frames,aStyle)) );
     setActiveSurfaceId(0);
@@ -28,7 +28,7 @@ Entity::~Entity() {
 
 
 Surface *Entity::getActiveSurface() {
-    SurfaceManager *cm = SurfaceManager::getInstance();
+    SurfaceManager *cm = INSTANCEPTROF(SurfaceManager);
     return cm->getImage(surfaces->at(activeSurfaceId));
 }
 

@@ -2,20 +2,11 @@
 #include <iostream>
 #include <stdexcept>
 
-
-SurfaceManager *SurfaceManager::manager = NULL;
+INIT_SINGLETON(SurfaceManager);
 
 SurfaceManager::SurfaceManager() :
         images(0) {
     images = new std::vector<Surface *>();
-}
-
-SurfaceManager *SurfaceManager::getInstance() {
-    if (!SurfaceManager::manager) {
-        SurfaceManager::manager = new SurfaceManager();
-    }
-
-    return SurfaceManager::manager;
 }
 
 int SurfaceManager::addImage(Surface *image) {

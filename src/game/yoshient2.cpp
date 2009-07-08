@@ -13,7 +13,7 @@ YoshiEnt2::YoshiEnt2(std::string image, int frames) :
         endY(400) {
     _x = 100;
     _y = 323;
-    SurfaceManager *cm = SurfaceManager::getInstance();
+    SurfaceManager *cm = INSTANCEPTROF(SurfaceManager);
     Surface *another = new Surface("yoshi2.bmp",8,AnimationManager::AnimSingle);
     another -> setTransparency(255,0,255);
 
