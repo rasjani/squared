@@ -37,7 +37,6 @@ Surface *SurfaceManager::getImage(int imageId) {
 
 
 SurfaceManager::~SurfaceManager() {
-    // TODO: We are propably leaking memory here ?
     if (images != 0) {
         std::vector<Surface *>::iterator it;
 
