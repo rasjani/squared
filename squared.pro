@@ -7,12 +7,12 @@ SUBDIRS= src
 
 QMAKE_EXTRA_TARGETS+=ctags
 ctags.depends=FORCE
-ctags.commands=ctags --exclude=Makefile -R src/ 
+ctags.commands=ctags --exclude=Makefile -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++  src/ 
 
 QMAKE_EXTRA_TARGETS+=cscope
 cscope.depends=FORCE
 cscope.commands=find src -name "*.h" -print > ./cscope.files ;
-cscope.commands+=find src -name "*.src" -print >> ./cscope.files ;
+cscope.commands+=find src -name "*.cpp" -print >> ./cscope.files ;
 cscope.commands+=cscope -b -i./cscope.files 
 
 QMAKE_CLEAN += tags cscope.files cscope.out  doc/html/* valgrind.log Makefile.bak
