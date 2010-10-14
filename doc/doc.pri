@@ -1,3 +1,5 @@
-QMAKE_EXTRA_UNIX_TARGETS += doc
-doc.commands = @doxygen doc/Doxyfile
-doc.depends = FORCE
+unix {
+    QMAKE_EXTRA_TARGETS += doc
+    doc.commands = @doxygen doc/Doxyfile
+    doc.depends = FORCE
+}
